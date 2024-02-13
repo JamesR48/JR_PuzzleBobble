@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class PB_ShootComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject _shootableGO = null;
+    [SerializeField]
+    private Transform _shootPosition;
+    [SerializeField]
+    private float _fireRate = 0.1f;
+    [SerializeField]
+    private PB_Vector3EventChannelSO _aimDirectionEventChannel = default;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private float currentFireRateTimer = 0.0f;
 
     public void OnShoot()
     {
-        Debug.Log("SHOOTING!!");
+        if (_aimDirectionEventChannel)
+        {
+            _aimDirectionEventChannel.RaiseEvent(transform.up);
+        }
+    }
+
+    public void SetShootableGO(GameObject shootable)
+    {
+        _shootableGO = shootable;
+        
+        if (_shootableGO != null)
+        {
+            _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+        }
     }
 }

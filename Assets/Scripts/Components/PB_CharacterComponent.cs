@@ -12,6 +12,8 @@ public class PB_CharacterComponent : MonoBehaviour
     private PB_FloatEventChannelSO _turnEventChannel = default;
     [SerializeField]
     private Animator _AnimController = default;
+    [SerializeField]
+    private Transform _nextGemPosition;
 
     private void OnEnable()
     {
@@ -29,12 +31,6 @@ public class PB_CharacterComponent : MonoBehaviour
             _inputReader.shootEvent -= OnShoot;
             _inputReader.turnEvent -= OnTurn;
         }
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
     }
 
     private void OnShoot()

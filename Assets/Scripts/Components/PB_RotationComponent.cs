@@ -19,18 +19,16 @@ public class PB_RotationComponent : MonoBehaviour
         transform.rotation.ToAngleAxis(out _rotationAngle, out _rotationAxis);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _rotationAngle += _rotationDirection * _rotationSpeed * Time.fixedDeltaTime;
         _rotationAngle = Mathf.Clamp(_rotationAngle, -_angleLimit, _angleLimit);
         transform.rotation = Quaternion.AngleAxis(_rotationAngle, -Vector3.forward);
-        Debug.Log("ROTATING: " + transform.rotation.eulerAngles);
+        //Debug.Log("ROTATING: " + transform.rotation.eulerAngles);
     }
 
     public void OnRotate(float direction)
     {
-        //Debug.Log("ROTATING: " + direction);
         _rotationDirection = direction;
     }
 }
