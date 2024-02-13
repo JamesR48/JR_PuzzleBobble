@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
+[CreateAssetMenu(fileName = "InputReader", menuName = "Puzzle Bobble/Input/Input Reader")]
 public class PB_InputReaderSO : ScriptableObject, PB_Input.IGameplayActions
 {
     public event UnityAction shootEvent = delegate { };

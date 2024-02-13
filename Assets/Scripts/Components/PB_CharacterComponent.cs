@@ -6,15 +6,16 @@ public class PB_CharacterComponent : MonoBehaviour
 {
     [SerializeField]
     private PB_InputReaderSO _inputReader = default;
-
-    private PB_ShootComponent _shooter;
-    private PB_RotationComponent _rotator;
+    [SerializeField]
+    private PB_VoidEventChannelSO _shootEventChannel = default;
+    [SerializeField]
+    private PB_FloatEventChannelSO _turnEventChannel = default;
+    [SerializeField]
+    private Animator _AnimController = default;
 
     private void OnEnable()
     {
-        _shooter = GetComponent<PB_ShootComponent>();
-        _rotator = GetComponent<PB_RotationComponent>();
-        if (_inputReader && _shooter && _rotator)
+        if (_inputReader && _shootEventChannel && _turnEventChannel)
         {
             _inputReader.shootEvent += OnShoot;
             _inputReader.turnEvent += OnTurn;
@@ -38,17 +39,22 @@ public class PB_CharacterComponent : MonoBehaviour
 
     private void OnShoot()
     {
-        if (_shooter)
+        if (_shootEventChannel)
         {
-            _shooter.OnShoot();
+            _shootEventChannel.RaiseEvent();
         }
     }
 
     private void OnTurn(float direction)
     {
-        if (_rotator)
+        if (_turnEventChannel)
         {
-            _rotator.OnRotate(direction);
+            _turnEventChannel.RaiseEvent(direction);
+        }
+
+        if(_AnimController)
+        {
+            _AnimController.SetFloat("TurnDirection", direction);
         }
     }
 }
