@@ -521,6 +521,99 @@ Transform:
   m_Father: {fileID: 1518457844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &798744573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798744575}
+  - component: {fileID: 798744574}
+  - component: {fileID: 798744576}
+  - component: {fileID: 798744577}
+  m_Layer: 0
+  m_Name: GemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798744574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798744573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5f06daf1bd37146b8cff37e6644165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemPool: {fileID: 798744576}
+  _gemCount: 8
+  _characterComponent: {fileID: 1699071503}
+--- !u!4 &798744575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798744573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00567134, y: -0.33243012, z: 0.0966968}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798744576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798744573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a24d5c71793e3d459fb72df440f704a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemPrefab: {fileID: 8235600693371696137, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
+  _poolCollectionCheck: 1
+  _poolCapacity: 20
+  _poolMaxSize: 40
+--- !u!114 &798744577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798744573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 58b66623f0c92bf4bb878a8396cb2ae2, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798744574}
+        m_TargetAssemblyTypeName: PB_GemManager, Assembly-CSharp
+        m_MethodName: UpdateShootableGems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &884989452
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,54 +698,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &888414167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 888414169}
-  - component: {fileID: 888414168}
-  m_Layer: 0
-  m_Name: GemSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &888414168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888414167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a24d5c71793e3d459fb72df440f704a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gemPrefab: {fileID: 8235600693371696117, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
-  _poolCollectionCheck: 1
-  _poolCapacity: 20
-  _poolMaxSize: 40
---- !u!4 &888414169
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888414167}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2996656, y: -0.23422734, z: 0.105928324}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1335654615
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518457844}
   - component: {fileID: 1518457846}
-  - component: {fileID: 1518457845}
+  - component: {fileID: 1518457850}
   - component: {fileID: 1518457848}
   - component: {fileID: 1518457849}
   m_Layer: 0
@@ -774,22 +819,6 @@ Transform:
   m_Father: {fileID: 1699071506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1518457845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518457843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37cb3aa2d58773044b42feceaba7e573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shootableGO: {fileID: 0}
-  _shootPosition: {fileID: 709365283}
-  _fireRate: 0.1
-  _aimDirectionEventChannel: {fileID: 11400000, guid: f6d11bef8e533ff4f9a28780b915ffaa, type: 2}
 --- !u!114 &1518457846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,8 +849,8 @@ MonoBehaviour:
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1518457845}
-        m_TargetAssemblyTypeName: PB_ShootComponent, Assembly-CSharp
+      - m_Target: {fileID: 1518457850}
+        m_TargetAssemblyTypeName: PB_CannonComponent, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 1
         m_Arguments:
@@ -860,6 +889,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1518457850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518457843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396e599dcc53da049bc79c39f572c212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootableGO: {fileID: 8235600693371696117, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
+  _shootPosition: {fileID: 709365283}
+  _fireRate: 0.1
 --- !u!1 &1699071500
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +936,7 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: fb53da55183a3654ab3e6b62b1b0a7f2, type: 2}
   _shootEventChannel: {fileID: 11400000, guid: 58b66623f0c92bf4bb878a8396cb2ae2, type: 2}
   _turnEventChannel: {fileID: 11400000, guid: 8f26d54382acac3479de223f93bbc14f, type: 2}
+  _cannonGO: {fileID: 1518457850}
   _AnimController: {fileID: 634623533}
   _nextGemPosition: {fileID: 409948649}
 --- !u!4 &1699071506

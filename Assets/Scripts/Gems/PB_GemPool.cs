@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 public class PB_GemPool : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _gemPrefab;
+    private PB_GemComponent _gemPrefab;
 
     [SerializeField]
     private bool _poolCollectionCheck = true;
@@ -15,40 +15,46 @@ public class PB_GemPool : MonoBehaviour
     [SerializeField]
     private int _poolMaxSize = 40;
 
-    private IObjectPool<GameObject> _gemPool;
+    public IObjectPool<PB_GemComponent> _gemPool;
 
     private void Awake()
     {
-        _gemPool = new ObjectPool<GameObject>(CreateGem, OnGetFromPool, OnReturnedToPool, OnDestroyPoolObject, _poolCollectionCheck, _poolCapacity, _poolMaxSize);
+        _gemPool = new ObjectPool<PB_GemComponent>(CreateGem, OnGetFromPool, OnReturnedToPool, OnDestroyPoolObject, _poolCollectionCheck, _poolCapacity, _poolMaxSize);
     }
 
-    private GameObject CreateGem()
+    private PB_GemComponent CreateGem()
     {
-        GameObject gemInstance = Instantiate(_gemPrefab);
+        PB_GemComponent gemInstance = Instantiate(_gemPrefab);
         return gemInstance;
     }
 
     // Called when an item is taken from the pool using Get
-    private void OnGetFromPool(GameObject gem)
+    private void OnGetFromPool(PB_GemComponent gem)
     {
-        gem.SetActive(true);
+        gem.gameObject.SetActive(true);
     }
 
     // Called when an item is returned to the pool using Release
-    private void OnReturnedToPool(GameObject gem)
+    private void OnReturnedToPool(PB_GemComponent gem)
     {
-        gem.SetActive(false);
+        gem.gameObject.SetActive(false);
     }
 
     // If the pool capacity is reached then any items returned will be destroyed.
     // We can control what the destroy behavior does, here we destroy the GameObject.
-    private void OnDestroyPoolObject(GameObject gem)
+    private void OnDestroyPoolObject(PB_GemComponent gem)
     {
         Destroy(gem);
     }
 
-    public GameObject GetGem()
+    public PB_GemComponent GetGem()
     {
-        return _gemPool.Get();
+        Debug.Log(_gemPool);
+        if(_gemPool != null)
+        {
+            return _gemPool.Get();
+        }
+
+        return null;
     }
 }

@@ -19,7 +19,7 @@ public class PB_MoveComponent : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 tempPosition = transform.position;
-        Debug.Log(_velocity);
+        //Debug.Log(_velocity);
         transform.position += _velocity * Time.fixedDeltaTime;
         _oldPosition = tempPosition;
     }

@@ -7,22 +7,37 @@ public class PB_GemManager : MonoBehaviour
     [SerializeField]
     private PB_GemPool _gemPool = null;
     [SerializeField]
-    private int _gemCount = 20;
+    private int _gemCount = 10;
     [SerializeField]
-    private int _levelGemCount = 10;
-    [SerializeField]
-    private int _shootableGemCount = 2;
+    private PB_CharacterComponent _characterComponent = null;
 
-    private List<GameObject> _gemGOList;
+    private List<PB_GemComponent> _gemList;
 
-    private void Awake()
+    private void Start()
     {
-        if(_gemPool)
+        if(_gemPool != null)
         {
-            for(int idx = 0; idx < _gemCount; idx++)
-            {
-                _gemGOList.Add(_gemPool.GetGem());
-            }
+            //_gemList = new List<PB_GemComponent>();
+            //for(int idx = 0; idx < _gemCount; idx++)
+            //{
+            //    PB_GemComponent newGem = _gemPool.GetGem();
+            //    if(newGem != null)
+            //    {
+            //        _gemList.Add(newGem);
+            //    }
+            //}
+
+            UpdateShootableGems();
+        }
+    }
+
+    public void UpdateShootableGems()
+    {
+        if (_gemPool != null && _characterComponent != null)
+        {
+            PB_GemComponent[] gems = new PB_GemComponent[2];
+            gems[0] = _gemPool.GetGem(); gems[1] = _gemPool.GetGem();
+            _characterComponent.UpdateShootableGems(gems);
         }
     }
 }

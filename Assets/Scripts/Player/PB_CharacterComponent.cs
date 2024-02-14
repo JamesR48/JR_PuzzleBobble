@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PB_CharacterComponent : MonoBehaviour
     private PB_VoidEventChannelSO _shootEventChannel = default;
     [SerializeField]
     private PB_FloatEventChannelSO _turnEventChannel = default;
+    [SerializeField]
+    private PB_CannonComponent _cannonGO = default;
     [SerializeField]
     private Animator _AnimController = default;
     [SerializeField]
@@ -52,5 +55,14 @@ public class PB_CharacterComponent : MonoBehaviour
         {
             _AnimController.SetFloat("TurnDirection", direction);
         }
+    }
+
+    public void UpdateShootableGems(PB_GemComponent[] gems)
+    {
+        if(_cannonGO != null)
+        {
+            _cannonGO.SetShootableGO(gems[0].gameObject);
+        }
+        gems[1].transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
     }
 }
