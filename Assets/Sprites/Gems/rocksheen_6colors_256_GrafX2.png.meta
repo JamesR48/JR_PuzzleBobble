@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -998,7 +998,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       rocksheen_6colors_256_GrafX2_25: 1719990565
-      rocksheen_6colors_256_GrafX2_20: -648096086
       rocksheen_6colors_256_GrafX2_40: -888077606
       rocksheen_6colors_256_GrafX2_7: 1000582463
       rocksheen_6colors_256_GrafX2_13: -2036187887
@@ -1007,11 +1006,12 @@ TextureImporter:
       rocksheen_6colors_256_GrafX2_26: 771603830
       rocksheen_6colors_256_GrafX2_4: -1941101221
       rocksheen_6colors_256_GrafX2_6: 571062489
-      rocksheen_6colors_256_GrafX2_28: 449729466
+      rocksheen_6colors_256_GrafX2_20: -648096086
       rocksheen_6colors_256_GrafX2_9: 855193483
       rocksheen_6colors_256_GrafX2_14: 1626247981
       rocksheen_6colors_256_GrafX2_5: -1902019406
       rocksheen_6colors_256_GrafX2_24: -476554788
+      rocksheen_6colors_256_GrafX2_28: 449729466
       rocksheen_6colors_256_GrafX2_0: -1902048573
       rocksheen_6colors_256_GrafX2_27: -1438265149
       rocksheen_6colors_256_GrafX2_32: 433196911

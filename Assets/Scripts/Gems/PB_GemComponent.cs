@@ -4,19 +4,19 @@ using UnityEngine;
 
 public enum PB_EGemType
 {
-    None,
-    Dirt,
-    Silver,
-    Gold,
-    Fire,
-    Water,
-    Emerald
+    NONE,
+    DIRT,
+    SILVER,
+    GOLD,
+    RUBY,
+    AZURITE,
+    EMERALD
 }
 
 public class PB_GemComponent : MonoBehaviour, PB_IShootable
 {
     [SerializeField]
-    private PB_EGemType _gemType = PB_EGemType.None;
+    private PB_EGemType _gemType = PB_EGemType.NONE;
 
     private PB_MoveComponent _moveComponent;
 

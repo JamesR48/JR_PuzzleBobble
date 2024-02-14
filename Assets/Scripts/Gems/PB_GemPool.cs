@@ -49,7 +49,6 @@ public class PB_GemPool : MonoBehaviour
 
     public PB_GemComponent GetGem()
     {
-        Debug.Log(_gemPool);
         if(_gemPool != null)
         {
             return _gemPool.Get();
