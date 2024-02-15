@@ -23,6 +23,7 @@ public class PB_CannonComponent : MonoBehaviour
     {
         if (_shootableGO != null && _shootableGO.TryGetComponent(out PB_IShootable shootableComp))
         {
+            _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
             shootableComp.ShootResponse();
         }
     }
