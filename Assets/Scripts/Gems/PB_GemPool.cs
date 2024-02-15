@@ -9,51 +9,65 @@ public class PB_GemPool : MonoBehaviour
     private PB_GemComponent _gemPrefab;
 
     [SerializeField]
-    private bool _poolCollectionCheck = true;
+    private int _poolSize = 33;
     [SerializeField]
-    private int _poolCapacity = 20;
-    [SerializeField]
-    private int _poolMaxSize = 40;
+    private Transform _poolParent; //for making a parent hierarchy on the inspector when spawning multiple objects (just for visual organization)
 
-    public IObjectPool<PB_GemComponent> _gemPool;
+    public Queue<PB_GemComponent> _gemPool;
 
     private void Awake()
     {
-        _gemPool = new ObjectPool<PB_GemComponent>(CreateGem, OnGetFromPool, OnReturnedToPool, OnDestroyPoolObject, _poolCollectionCheck, _poolCapacity, _poolMaxSize);
+        InitPool();
     }
 
-    private PB_GemComponent CreateGem()
+    private void InitPool()
     {
-        PB_GemComponent gemInstance = Instantiate(_gemPrefab);
-        return gemInstance;
-    }
+        //if the queue hasn't been created yet or was created but is empty, then create a new one
+        if (_gemPool == null || _gemPool.Count == 0)
+        {
+            _gemPool = new Queue<PB_GemComponent>();
+        }
 
-    // Called when an item is taken from the pool using Get
-    private void OnGetFromPool(PB_GemComponent gem)
-    {
-        gem.gameObject.SetActive(true);
-    }
+        //if we already have as many of this objects spawned, don't spawn anymore
+        if (_gemPool.Count >= _poolSize)
+        {
+            return;
+        }
 
-    // Called when an item is returned to the pool using Release
-    private void OnReturnedToPool(PB_GemComponent gem)
-    {
-        gem.gameObject.SetActive(false);
-    }
+        //if there's no parent, create a new one with the name of this object
+        if (!_poolParent)
+        {
+            _poolParent = new GameObject(name).transform;
+        }
 
-    // If the pool capacity is reached then any items returned will be destroyed.
-    // We can control what the destroy behavior does, here we destroy the GameObject.
-    private void OnDestroyPoolObject(PB_GemComponent gem)
-    {
-        Destroy(gem);
+        while (_gemPool.Count < _poolSize)
+        {
+            PB_GemComponent newGem = Instantiate(_gemPrefab, _poolParent);
+            newGem.gameObject.SetActive(false);
+            _gemPool.Enqueue(newGem);
+        }
     }
 
     public PB_GemComponent GetGem()
     {
-        if(_gemPool != null)
+        if (_gemPool == null || _gemPool.Count == 0)
         {
-            return _gemPool.Get();
+            InitPool();
+            Debug.LogWarning($"{name} spawned mid game. Consider spawning it at the start!");
         }
 
-        return null;
+        //get a reference to the first object (at the beginning of the queue) by removing it from the queue
+        PB_GemComponent gem = _gemPool.Dequeue();
+
+        if(gem == null)
+        {
+            return null;
+        }
+        //so we take the object from the front, and then stick it to the back
+        _gemPool.Enqueue(gem);
+
+        gem.gameObject.SetActive(true);
+
+        return gem;
     }
 }

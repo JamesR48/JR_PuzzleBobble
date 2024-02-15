@@ -20,7 +20,7 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
 
     private PB_MoveComponent _moveComponent;
 
-    private void Awake()
+    private void OnEnable()
     {
         _moveComponent = GetComponent<PB_MoveComponent>();
     }
@@ -39,6 +39,7 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
     {
         if(_moveComponent != null)
         {
+            _moveComponent.enabled = true;
             _moveComponent.OnStartMoving(transform.up);
         }
     }

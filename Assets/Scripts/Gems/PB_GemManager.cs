@@ -7,18 +7,16 @@ public class PB_GemManager : MonoBehaviour
     [SerializeField]
     private PB_GemPool _gemPool = null;
     [SerializeField]
-    private int _gemCount = 10;
-    [SerializeField]
     private PB_MapConfigSO _currentMapGems = null;
     [SerializeField]
     private PB_CharacterComponent _characterComponent = null;
 
     private PB_GemComponent[,] _gemsArray;
 
-    private void Start()
+    private void OnEnable()
     {
         InitMapGems();
-        UpdateShootableGems();
+        UpdateShootableGems(true);
     }
 
     private void InitMapGems()
@@ -64,13 +62,29 @@ public class PB_GemManager : MonoBehaviour
         }
     }
 
-    public void UpdateShootableGems()
+    public void UpdateShootableGems(bool bInitialSetup = false)
     {
         if (_gemPool != null && _characterComponent != null)
         {
-            PB_GemComponent[] gems = new PB_GemComponent[2];
-            gems[0] = _gemPool.GetGem(); gems[1] = _gemPool.GetGem();
-            _characterComponent.UpdateShootableGems(gems);
+            if(bInitialSetup)
+            {
+                PB_GemComponent[] gems = new PB_GemComponent[2];
+                gems[0] = _gemPool.GetGem();
+                gems[1] = _gemPool.GetGem();
+
+                if (gems[0] != null && gems[1] != null)
+                {
+                    _characterComponent.InitShootableGems(gems);
+                }
+            }
+            else
+            {
+                PB_GemComponent newGem = _gemPool.GetGem();
+                if (newGem != null)
+                {
+                    _characterComponent.UpdateShootableGems(newGem);
+                }
+            }
         }
     }
 }

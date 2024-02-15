@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public enum PB_EColliderType
 {
@@ -38,16 +39,25 @@ public class PB_CollisionComponent : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(colliders.Length > 0)
+
+    }
+
+    public bool CheckCollision(PB_CollisionComponent A, PB_CollisionComponent B)
+    {
+        if (A == null || B == null || A._colliderType == PB_EColliderType.NONE || B._colliderType == PB_EColliderType.NONE)
         {
-            int count = colliders.Length;
-            for (int idx = 0; idx < count; idx++)
-            {
-                if (this != colliders[idx])
-                {
-                    bool bcollided = CheckCircleCircle(this, colliders[idx]);
-                }
-            }
+            return false;
+        }
+
+        bool bAIsCircle = A._colliderType == PB_EColliderType.CIRCLE;
+        bool bBIsCircle = B._colliderType == PB_EColliderType.CIRCLE;
+        if (bAIsCircle && bBIsCircle)
+        {
+            return CheckCircleCircle(A, B);
+        }
+        else
+        {
+            return false; // Line - Circle
         }
     }
 
@@ -65,7 +75,7 @@ public class PB_CollisionComponent : MonoBehaviour
             return false;
         }
 
-        Debug.Log(distSqr + " COLLIDE!");
+        Debug.Log("COLLIDE " + distSqr + " " + radiusSum);
         return true;
     }
 
@@ -93,6 +103,12 @@ public class PB_CollisionComponent : MonoBehaviour
     }
 
     public bool GetDrawDebugCollider() { return bDrawDebugCollider; }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = new Color(1, 1, 0, 1.0f);
+        //Gizmos.DrawWireSphere(transform.position, GetCircleRadius());
+    }
 }
 
 public class MyScriptGizmoDrawer

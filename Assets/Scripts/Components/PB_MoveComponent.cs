@@ -11,21 +11,27 @@ public class PB_MoveComponent : MonoBehaviour
     private Vector3 _oldPosition = Vector3.zero;
     private Vector3 _velocity = Vector3.zero;
 
-    private void OnEnable()
+    private void Start()
     {
         _oldPosition = transform.position;
+        enabled = false;
     }
 
     private void FixedUpdate()
     {
-        Vector3 tempPosition = transform.position;
-        //Debug.Log(_velocity);
-        transform.position += _velocity * Time.fixedDeltaTime;
-        _oldPosition = tempPosition;
+        
     }
 
     public void OnStartMoving(Vector3 direction)
     {
         _velocity = direction * _maxSpeed;
+    }
+
+    public void UpdateMovement(float DeltaTime)
+    {
+        Vector3 tempPosition = transform.position;
+        //Debug.Log(_velocity);
+        transform.position += _velocity * DeltaTime;
+        _oldPosition = tempPosition;
     }
 }

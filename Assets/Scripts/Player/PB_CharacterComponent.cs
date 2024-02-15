@@ -18,6 +18,8 @@ public class PB_CharacterComponent : MonoBehaviour
     [SerializeField]
     private Transform _nextGemPosition;
 
+    PB_GemComponent _nextGem = null;
+
     private void OnEnable()
     {
         if (_inputReader && _shootEventChannel && _turnEventChannel)
@@ -57,12 +59,23 @@ public class PB_CharacterComponent : MonoBehaviour
         }
     }
 
-    public void UpdateShootableGems(PB_GemComponent[] gems)
+    public void InitShootableGems(PB_GemComponent[] gems)
     {
-        if(_cannonGO != null)
+        if (_cannonGO != null)
         {
             _cannonGO.SetShootableGO(gems[0].gameObject);
         }
         gems[1].transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
+        _nextGem = gems[1];
+    }
+
+    public void UpdateShootableGems(PB_GemComponent gem)
+    {
+        if (_cannonGO != null)
+        {
+            _cannonGO.SetShootableGO(_nextGem.gameObject);
+        }
+        gem.transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
+        _nextGem = gem;
     }
 }

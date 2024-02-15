@@ -12,7 +12,7 @@ public class PB_CannonComponent : MonoBehaviour
     private float _fireRate = 0.1f;
 
     private float currentFireRateTimer = 0.0f;
-    private void Awake()
+    private void Start()
     {
         if (_shootableGO != null)
         {
