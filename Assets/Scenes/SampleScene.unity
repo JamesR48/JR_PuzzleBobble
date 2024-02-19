@@ -1205,6 +1205,7 @@ GameObject:
   - component: {fileID: 798744574}
   - component: {fileID: 798744576}
   - component: {fileID: 798744577}
+  - component: {fileID: 798744578}
   m_Layer: 0
   m_Name: GemManager
   m_TagString: Untagged
@@ -1225,9 +1226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gemPool: {fileID: 798744576}
-  _gemCount: 8
   _currentMapGems: {fileID: 11400000, guid: 06dc8942310227f45b870bbe9b8e861d, type: 2}
   _characterComponent: {fileID: 1699071503}
+  _gemPrefab: {fileID: 8235600693371696137, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
+  _maxGemsInGame: 33
 --- !u!4 &798744575
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,6 +1280,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PB_GemManager, Assembly-CSharp
         m_MethodName: UpdateShootableGems
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &798744578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798744573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b028476c4d1719845b6ba80b6c0c09b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: f4e00224b846dae4dbb075a9d06148cd, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798744574}
+        m_TargetAssemblyTypeName: PB_GemManager, Assembly-CSharp
+        m_MethodName: UpdateGems
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1918,8 +1948,6 @@ GameObject:
   - component: {fileID: 1518457844}
   - component: {fileID: 1518457846}
   - component: {fileID: 1518457850}
-  - component: {fileID: 1518457848}
-  - component: {fileID: 1518457849}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -1958,62 +1986,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _angleLimit: 45
   _rotationSpeed: 20
---- !u!114 &1518457848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518457843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 58b66623f0c92bf4bb878a8396cb2ae2, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1518457850}
-        m_TargetAssemblyTypeName: PB_CannonComponent, Assembly-CSharp
-        m_MethodName: OnShoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1518457849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518457843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd4c1cd6fd5e3f46b36ba82b22b28b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 8f26d54382acac3479de223f93bbc14f, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1518457846}
-        m_TargetAssemblyTypeName: PB_RotationComponent, Assembly-CSharp
-        m_MethodName: OnRotate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1518457850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,6 +2000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootableGO: {fileID: 8235600693371696117, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
   _shootPosition: {fileID: 709365283}
+  _RotationComp: {fileID: 1518457846}
   _fireRate: 0.1
 --- !u!1 &1538543542
 GameObject:
@@ -2358,8 +2331,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: fb53da55183a3654ab3e6b62b1b0a7f2, type: 2}
-  _shootEventChannel: {fileID: 11400000, guid: 58b66623f0c92bf4bb878a8396cb2ae2, type: 2}
-  _turnEventChannel: {fileID: 11400000, guid: 8f26d54382acac3479de223f93bbc14f, type: 2}
   _cannonGO: {fileID: 1518457850}
   _AnimController: {fileID: 634623533}
   _nextGemPosition: {fileID: 409948649}
@@ -2559,13 +2530,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2073769444}
   - component: {fileID: 2073769445}
+  - component: {fileID: 2073769446}
   m_Layer: 0
   m_Name: PhysicsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2073769444
 Transform:
   m_ObjectHideFlags: 0
@@ -2593,3 +2565,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2461468ff0e3fb845ad9e57947e9842e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2073769446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073769443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b028476c4d1719845b6ba80b6c0c09b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: f4e00224b846dae4dbb075a9d06148cd, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2073769445}
+        m_TargetAssemblyTypeName: PB_PhysicsManager, Assembly-CSharp
+        m_MethodName: UpdatePhysicsObjects
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

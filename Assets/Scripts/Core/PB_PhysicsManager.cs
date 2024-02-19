@@ -53,7 +53,37 @@ public class PB_PhysicsManager : MonoBehaviour
             {
                 for (int jdx = idx + 1; jdx < _collideablesCount; jdx++)
                 {
-                    _collideables[idx].CheckCollision(_collideables[idx], _collideables[jdx]);
+                    bool bcollided = _collideables[idx].CheckCollision(_collideables[idx], _collideables[jdx]);
+
+                    if(_collideables[idx] != null && bcollided && _collideables[idx].TryGetComponent(out PB_MoveComponent MoveComp))
+                    {
+                        MoveComp.OnStartMoving(Vector3.zero);
+                        MoveComp.enabled = false;
+                    }
+                }
+            }
+        }
+    }
+
+    public void UpdatePhysicsObjects(GameObject spawnedGO)
+    {
+        if(spawnedGO != null)
+        {
+            if(spawnedGO.TryGetComponent(out PB_CollisionComponent collisionComp))
+            {
+                if(!_collideables.ContainsValue(collisionComp))
+                {
+                    _collideables.Add(_collideablesCount, collisionComp);
+                    _collideablesCount++;
+                }
+            }
+
+            if (spawnedGO.TryGetComponent(out PB_MoveComponent moveComp))
+            {
+                if (!_movables.ContainsValue(moveComp))
+                {
+                    _movables.Add(_movablesCount, moveComp);
+                    _movablesCount++;
                 }
             }
         }

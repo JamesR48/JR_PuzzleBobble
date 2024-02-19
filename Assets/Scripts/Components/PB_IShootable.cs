@@ -5,4 +5,6 @@ using UnityEngine;
 public interface PB_IShootable
 {
     void ShootResponse();
+
+    GameObject gameObject { get; }
 }

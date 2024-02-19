@@ -14,12 +14,11 @@ public class PB_MoveComponent : MonoBehaviour
     private void Start()
     {
         _oldPosition = transform.position;
-        enabled = false;
     }
 
     private void FixedUpdate()
     {
-        
+        UpdateMovement(Time.fixedDeltaTime);
     }
 
     public void OnStartMoving(Vector3 direction)

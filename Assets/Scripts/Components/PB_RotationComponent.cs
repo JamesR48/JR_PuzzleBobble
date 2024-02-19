@@ -27,7 +27,7 @@ public class PB_RotationComponent : MonoBehaviour
         //Debug.Log("ROTATING: " + transform.rotation.eulerAngles);
     }
 
-    public void OnRotate(float direction)
+    public void SetRotationDirection(float direction)
     {
         _rotationDirection = direction;
     }

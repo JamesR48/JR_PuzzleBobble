@@ -113,20 +113,20 @@ public class PB_CollisionComponent : MonoBehaviour
 
 public class MyScriptGizmoDrawer
 {
-    [DrawGizmo(GizmoType.Selected | GizmoType.Active)]
-    static void DrawGizmoForMyScript(PB_CollisionComponent scr, GizmoType gizmoType)
-    {
-       if(scr != null && scr.GetDrawDebugCollider())
-       {
-            if(scr.GetColliderType() == PB_EColliderType.CIRCLE)
-            {
-                Gizmos.DrawWireSphere(scr.GetRelativeCustomCenter(), scr.GetCircleRadius());
-            }
-            else if(scr.GetColliderType() == PB_EColliderType.LINE_VERTICAL 
-                || scr.GetColliderType() == PB_EColliderType.LINE_HORIZONTAL) 
-            {
-                Gizmos.DrawLine(scr.GetLineStart(), scr.GetLineEnd());
-            }
-       }
-    }
+    //[DrawGizmo(GizmoType.Selected | GizmoType.Active)]
+    //static void DrawGizmoForMyScript(PB_CollisionComponent scr, GizmoType gizmoType)
+    //{
+    //   if(scr != null && scr.GetDrawDebugCollider())
+    //   {
+    //        if(scr.GetColliderType() == PB_EColliderType.CIRCLE)
+    //        {
+    //            Gizmos.DrawWireSphere(scr.GetRelativeCustomCenter(), scr.GetCircleRadius());
+    //        }
+    //        else if(scr.GetColliderType() == PB_EColliderType.LINE_VERTICAL 
+    //            || scr.GetColliderType() == PB_EColliderType.LINE_HORIZONTAL) 
+    //        {
+    //            Gizmos.DrawLine(scr.GetLineStart(), scr.GetLineEnd());
+    //        }
+    //   }
+    //}
 }
