@@ -112,4 +112,10 @@ public class PB_GemManager : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = new Color(1, 1, 0, 1.0f);
+        //Gizmos.DrawWireSphere(transform.position, GetCircleRadius());
+    }
 }
