@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public enum PB_EGemType
 {
@@ -60,11 +62,13 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
             if (gemM)
             {
                 Debug.Log("original: " + transform.position);
-                Debug.Log("TW from Original: " + gemM.TileToWorld((int)transform.position.x, (int)transform.position.y));
-                Vector3 nt = gemM.NearestTile(transform.position.x, transform.position.y);
+                //Debug.Log("TW from Original: " + gemM.TileToWorld(transform.position.x, transform.position.y));
+                Vector2Int nt = gemM.NearestTile(transform.position.x, transform.position.y);
                 Debug.Log("NT: " + nt);
-                transform.position = nt;//gemM.TileToWorld(nt.x, nt.y);
-                transform.position += new Vector3(0.5f, 0.5f, 0.0f);
+                transform.position = gemM.TileToWorld(nt.x, nt.y);
+                //transform.position += new Vector3(0.5f, 0.5f, 0.0f);
+                //Vector3Int cellPosition = gemM._backgroundTilemap.WorldToCell(transform.position);
+                //transform.position = gemM._backgroundTilemap.GetCellCenterWorld(cellPosition);
                 Debug.Log("TW from NT: " + gemM.TileToWorld(nt.x, nt.y));
             }
         }

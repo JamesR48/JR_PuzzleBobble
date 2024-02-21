@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 public class PB_GemManager : MonoBehaviour
 {
     [SerializeField]
-    private Tilemap _backgroundTilemap;
+    public Tilemap _backgroundTilemap;
 
     [SerializeField]
     private PB_GemPool _gemPool = null;
@@ -82,8 +83,8 @@ public class PB_GemManager : MonoBehaviour
                             newPos = new Vector3(xp, yp); //new Vector3((col*1.0f)+Left+((row%2)*0.5f), row*1.0f+Up, 0); // Map is 12x14. 7 free up. aprox 10 free laterally
 
                             //newPos = NearestTile(Left + col, Up - row);
-                            newPos = TileToWorld(Left + col, Up - row);
-                            newPos.x += 0.5f;
+                            newPos = TileToWorld(col, row);
+                            //newPos.x += 0.5f;
                             if (_backgroundTilemap != null)
                             {
                                 //Vector3Int gridPos = _backgroundTilemap.WorldToCell(newPos);
@@ -112,7 +113,11 @@ public class PB_GemManager : MonoBehaviour
                 //_gemsArray[2].transform.position = new Vector3(Left, Up, 0.0f) + offsetToWorld;
                 //_gemsArray[3].transform.position = new Vector3(Left, Down, 0.0f) + offsetToWorld;
 
-                _gemsArray[0].transform.position = TileToWorld((int)-4.49063206f, (int)3.59466577f); //NearestTile(-4.49063206f, 3.59466577f);
+                //_gemsArray[0].transform.position = TileToWorld((int)-4.49063206f, (int)3.59466577f); //NearestTile(-4.49063206f, 3.59466577f);
+                //Vector2Int nt = NearestTile(-4.49063206f, 3.59466577f);
+                //Vector3 tw = TileToWorld(nt.x, nt.y);
+                //_gemsArray[0].transform.position = tw;
+                //Debug.Log("NT: " + nt + " TW: " + tw);
             }
         }
     }
@@ -158,24 +163,30 @@ public class PB_GemManager : MonoBehaviour
         }
     }
 
-    public Vector3 TileToWorld(float InX, float InY)
+    public Vector3 TileToWorld(int InX, int InY)
     {
-        float yp = (InY + 0.5f);
-        float xp = ((InX - ((InY % 2) * 0.5f)));// + 0.25f;
-        return new Vector3(xp, yp);
+        float yp = (int)InY * 1 + Up;
+        float xp = (InX * 1) + Left + ((InY%2) * (1*0.5f));
+        xp += (InY % 2 == 0 ? 0.5f : 0.0f);
+        return new Vector3(xp, yp-0.5f);
+        
+        //Vector3Int tilePos = new Vector3Int(InX, InY, 0);
+        //Vector3 worldPos = _backgroundTilemap.GetCellCenterWorld(tilePos);
+        //float oddOffset = _backgroundTilemap.cellSize.x * 0.5f;
+        //worldPos.x += ((InY % 2) * oddOffset);
+        //return worldPos;
     }
 
-    public Vector3 NearestTile(float InX, float InY)
+    public Vector2Int NearestTile(float InX, float InY)
     {
-        //float yp = (-InY + Up + 0.5f) / 1.0f;
-        //float xp = ((InX + Left + 0.5f - ((yp % 2) * 0.5f)) / 1.0f) + 0.25f;
-        //float yp = (InY - Up + 8.0f) / 16.0f;
-        //float xp = ((InX - Left + 8.0f - ((yp % 2) * 8.0f)) / 16.0f);// + 0.25f;
-        //float yp = ((int)InY + 0.5f);
-        //float xp = (((int)InX - ((yp % 2) * 0.5f))) + 0.25f;
-        int pointF = 1 / 2;
-        int yp = ((int)InY + pointF);
-        int xp = ((int)InX + pointF - ((yp%2)* pointF));
-        return new Vector3(xp, yp);
+        int yp = (int)(InY - Up + (0.5f)) / 1;
+        int xp = (int)((InX - Left + (0.5f) - ((yp%2)*(0.5f))) / 1);
+        return new Vector2Int(xp, yp);
+        
+        //Vector3 worldPos = new Vector3(InX, InY, 0.0f);
+        //Vector2Int tilePos = new Vector2Int(_backgroundTilemap.WorldToCell(worldPos).x, _backgroundTilemap.WorldToCell(worldPos).y);
+        //worldPos.x -= ((tilePos.y % 2) * 0.5f);
+        //tilePos = new Vector2Int(_backgroundTilemap.WorldToCell(worldPos).x, _backgroundTilemap.WorldToCell(worldPos).y);
+        //return tilePos;
     }
 }
