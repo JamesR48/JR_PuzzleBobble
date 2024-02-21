@@ -75,10 +75,15 @@ public class PB_GemManager : MonoBehaviour
                             Vector3 newPos = Vector3Int.zero;
                             float xOffset = row % 2 != 0 ? 8.0f : 7.5f;
                             //newPos = new Vector3(col - xOffset, 6.0f - row, 0); // Map is 12x14. 7 free up. aprox 10 free laterally
-                            float yp = (-row + Up + 0.5f) / 1.0f;
-                            float xp = ((col + Left + 0.5f - ((yp % 2) * 0.5f)) / 1.0f) + 0.25f;
+                            //float yp = (-row + Up + 0.5f) / 1.0f;
+                            //float xp = ((col + Left + 0.5f - ((yp % 2) * 0.5f)) / 1.0f) + 0.25f;
+                            float yp = (-row + Up);
+                            float xp = ((col + Left + ((yp % 2) * 0.5f)));
                             newPos = new Vector3(xp, yp); //new Vector3((col*1.0f)+Left+((row%2)*0.5f), row*1.0f+Up, 0); // Map is 12x14. 7 free up. aprox 10 free laterally
 
+                            //newPos = NearestTile(Left + col, Up - row);
+                            newPos = TileToWorld(Left + col, Up - row);
+                            newPos.x += 0.5f;
                             if (_backgroundTilemap != null)
                             {
                                 //Vector3Int gridPos = _backgroundTilemap.WorldToCell(newPos);
@@ -107,7 +112,7 @@ public class PB_GemManager : MonoBehaviour
                 //_gemsArray[2].transform.position = new Vector3(Left, Up, 0.0f) + offsetToWorld;
                 //_gemsArray[3].transform.position = new Vector3(Left, Down, 0.0f) + offsetToWorld;
 
-                _gemsArray[0].transform.position = NearestTile(-4.49063206f, 3.59466577f);
+                _gemsArray[0].transform.position = TileToWorld((int)-4.49063206f, (int)3.59466577f); //NearestTile(-4.49063206f, 3.59466577f);
             }
         }
     }
@@ -153,18 +158,24 @@ public class PB_GemManager : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    public Vector3 TileToWorld(float InX, float InY)
     {
-        //Gizmos.color = new Color(1, 1, 0, 1.0f);
-        //Gizmos.DrawWireSphere(transform.position, GetCircleRadius());
+        float yp = (InY + 0.5f);
+        float xp = ((InX - ((InY % 2) * 0.5f)));// + 0.25f;
+        return new Vector3(xp, yp);
     }
 
     public Vector3 NearestTile(float InX, float InY)
     {
         //float yp = (-InY + Up + 0.5f) / 1.0f;
         //float xp = ((InX + Left + 0.5f - ((yp % 2) * 0.5f)) / 1.0f) + 0.25f;
-        float yp = (InY - Up + 8.0f) / 16.0f;
-        float xp = ((InX - Left + 8.0f - ((yp % 2) * 8.0f)) / 16.0f);// + 0.25f;
+        //float yp = (InY - Up + 8.0f) / 16.0f;
+        //float xp = ((InX - Left + 8.0f - ((yp % 2) * 8.0f)) / 16.0f);// + 0.25f;
+        //float yp = ((int)InY + 0.5f);
+        //float xp = (((int)InX - ((yp % 2) * 0.5f))) + 0.25f;
+        int pointF = 1 / 2;
+        int yp = ((int)InY + pointF);
+        int xp = ((int)InX + pointF - ((yp%2)* pointF));
         return new Vector3(xp, yp);
     }
 }

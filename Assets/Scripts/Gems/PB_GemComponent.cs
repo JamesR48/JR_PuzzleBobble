@@ -51,10 +51,22 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_moveComponent != null) 
+        if (_moveComponent != null && _moveComponent.isActiveAndEnabled) 
         {
             _moveComponent.OnStartMoving(Vector3.zero);
             _moveComponent.enabled = false;
+
+            PB_GemManager gemM = FindObjectOfType<PB_GemManager>();
+            if (gemM)
+            {
+                Debug.Log("original: " + transform.position);
+                Debug.Log("TW from Original: " + gemM.TileToWorld((int)transform.position.x, (int)transform.position.y));
+                Vector3 nt = gemM.NearestTile(transform.position.x, transform.position.y);
+                Debug.Log("NT: " + nt);
+                transform.position = nt;//gemM.TileToWorld(nt.x, nt.y);
+                transform.position += new Vector3(0.5f, 0.5f, 0.0f);
+                Debug.Log("TW from NT: " + gemM.TileToWorld(nt.x, nt.y));
+            }
         }
     }
 }
