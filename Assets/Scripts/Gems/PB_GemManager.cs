@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static UnityEditor.PlayerSettings;
@@ -165,11 +166,16 @@ public class PB_GemManager : MonoBehaviour
 
     public Vector3 TileToWorld(int InX, int InY)
     {
-        float yp = (int)InY * 1 + Up;
-        float xp = (InX * 1) + Left + ((InY%2) * (1*0.5f));
-        xp += (InY % 2 == 0 ? 0.5f : 0.0f);
-        return new Vector3(xp, yp-0.5f);
-        
+        float yp = (Up - InY * 1.0f) + 0.5f;
+        float xp = (Left + InX * 1.0f) + 0.5f; //+ ((InY%2) * (1*0.5f));
+        //xp -= (InY % 2) * 0.5f;
+
+        Vector3Int tilePos = new Vector3Int(Left + InX, Up - InY, 0);
+        Vector3 worldPos = _backgroundTilemap.GetCellCenterWorld(tilePos);
+        //Debug.Log("pos in tilemap " + worldPos + " pos custom " + new Vector3(xp, yp));
+
+        return new Vector3(xp, yp);
+
         //Vector3Int tilePos = new Vector3Int(InX, InY, 0);
         //Vector3 worldPos = _backgroundTilemap.GetCellCenterWorld(tilePos);
         //float oddOffset = _backgroundTilemap.cellSize.x * 0.5f;
@@ -180,7 +186,13 @@ public class PB_GemManager : MonoBehaviour
     public Vector2Int NearestTile(float InX, float InY)
     {
         int yp = (int)(InY - Up + (0.5f)) / 1;
-        int xp = (int)((InX - Left + (0.5f) - ((yp%2)*(0.5f))) / 1);
+        int xp = (int)((InX - Left + (0.5f)) / 1);
+        //xp -= (int)((yp%2) * 0.5f);
+
+        Vector3 worldPos = new Vector3(InX, InY, 0.0f);
+        Vector2Int tilePos = new Vector2Int(_backgroundTilemap.WorldToCell(worldPos).x, _backgroundTilemap.WorldToCell(worldPos).y);
+        Debug.Log("pos in tilemap " + tilePos + " pos custom " + new Vector2Int(xp, yp));
+
         return new Vector2Int(xp, yp);
         
         //Vector3 worldPos = new Vector3(InX, InY, 0.0f);

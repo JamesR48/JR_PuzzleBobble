@@ -3920,7 +3920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angleLimit: 45
-  _rotationSpeed: 20
+  _rotationSpeed: 40
 --- !u!114 &1518457850
 MonoBehaviour:
   m_ObjectHideFlags: 0
