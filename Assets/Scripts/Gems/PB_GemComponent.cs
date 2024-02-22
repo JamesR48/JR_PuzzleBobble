@@ -23,6 +23,8 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
     [SerializeField]
     private PB_EGemType _gemType = PB_EGemType.NONE;
 
+    private PB_GemManager _gemManager { set { _gemManager = value; } }
+
     private PB_MoveComponent _moveComponent;
 
     private void OnEnable()
@@ -61,15 +63,8 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
             PB_GemManager gemM = FindObjectOfType<PB_GemManager>();
             if (gemM)
             {
-                //Debug.Log("original: " + transform.position);
-                //Debug.Log("TW from Original: " + gemM.TileToWorld(transform.position.x, transform.position.y));
                 Vector2Int nt = gemM.NearestTile(transform.position.x, transform.position.y);
-                //Debug.Log("NT: " + nt);
                 transform.position = gemM.TileToWorld(nt.x, nt.y);
-                //transform.position += new Vector3(0.5f, 0.5f, 0.0f);
-                //Vector3Int cellPosition = gemM._backgroundTilemap.WorldToCell(transform.position);
-                //transform.position = gemM._backgroundTilemap.GetCellCenterWorld(cellPosition);
-                //Debug.Log("TW from NT: " + gemM.TileToWorld(nt.x, nt.y));
             }
         }
     }
