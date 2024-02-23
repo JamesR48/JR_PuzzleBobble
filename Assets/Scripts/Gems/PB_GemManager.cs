@@ -26,12 +26,16 @@ public class PB_GemManager : MonoBehaviour
 
     //private PB_GemComponent[,] _gemsArray;
     private List<PB_GemComponent> _gemsArray;
+    public List<PB_GemComponent> gemsArray { get { return _gemsArray; } set { _gemsArray = value; } }
+
+    private List<PB_GemComponent> _gemsToDestroy;
+    public List<PB_GemComponent> gemsToDestroy { get { return _gemsToDestroy; } set { _gemsToDestroy = value; } }
 
     private int _currentGemsInGame = 0;
 
     int Right;
     int Left;
-    int Up;
+    public int Up;
     int Down;
 
 
@@ -55,6 +59,7 @@ public class PB_GemManager : MonoBehaviour
 
             Vector3 offset = new Vector3(mapRows*0.5f+1.5f, -mapCols*0.5f+1.5f, 0);
             //_gemsArray = new PB_GemComponent[mapRows, mapCols];
+            _gemsToDestroy = new List<PB_GemComponent>();
             _gemsArray = new List<PB_GemComponent>();
             PB_EGemType[,] mapGemTypes = _currentMapGems.GetMapGemTypes();
 
@@ -71,6 +76,7 @@ public class PB_GemManager : MonoBehaviour
                         PB_GemComponent newGem = Instantiate(_gemPrefab);
                         if (newGem != null)
                         {
+                            newGem.gemManager = this;
                             newGem.SetGemType(currentType);
 
                             // assign the new position of the ball
@@ -79,6 +85,7 @@ public class PB_GemManager : MonoBehaviour
                             {
                                 Vector2Int toTile = NearestTile(newPos.x, newPos.y);
                                 newPos = TileToWorld(toTile.x, toTile.y);
+                                newGem.gemTilePosition = toTile;
                             }
                             newGem.transform.position = (newPos);
 
@@ -132,9 +139,29 @@ public class PB_GemManager : MonoBehaviour
                 if (!_gemsArray.Contains(gemComp))
                 {
                     gemComp.gemManager = this;
-                    gemComp.SetGemType(PB_EGemType.GOLD);
+                    //gemComp.SetGemType(PB_EGemType.RUBY);
+                    List<PB_EGemType> currentGemTypes = new List<PB_EGemType>();
+                    Int32 foundTypesCount = 0;
+                    foreach (PB_GemComponent gem in _gemsArray)
+                    {
+                        if(!currentGemTypes.Contains(gem.GetGemType()))
+                        {
+                            currentGemTypes.Add(gem.GetGemType());
+                            foundTypesCount++;
+                            if(foundTypesCount >= 6)
+                            {
+                                break;
+                            }
+                        }
+                    }
 
-                    _gemsArray.Add(gemComp);
+                    if(foundTypesCount > 0)
+                    {
+                        Int32 randomTypeIndex = UnityEngine.Random.Range(0, foundTypesCount - 1);
+                        gemComp.SetGemType(currentGemTypes[randomTypeIndex]);
+                        Debug.Log("COLOR: " + gemComp.GetGemType().ToString());
+                    }
+                    //_gemsArray.Add(gemComp);
                     _currentGemsInGame++;
                 }
             }

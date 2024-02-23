@@ -15,43 +15,48 @@ public class PB_CannonComponent : MonoBehaviour
 
     private float currentFireRateTimer = 0.0f;
 
-    private PB_IShootable currentShootable = null;
+    private PB_IShootable _currentShootable = null;
+    private PB_IShootable _nextShootable = null;
 
     private void Start()
     {
-        if (_shootableGO != null && currentShootable == null)
+        if (_shootableGO != null && _currentShootable == null)
         {
             if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
             {
-                currentShootable = shootableComp.InstantiateShootable();
-                if(currentShootable != null)
+                _currentShootable = shootableComp.InstantiateShootable();
+                if(_currentShootable != null)
                 {
-                    currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-                    currentShootable.gameObject.transform.SetParent(transform);
+                    _currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                    _currentShootable.gameObject.transform.SetParent(transform);
                 }
             }
         }
     }
-    public void Shoot()
+
+    public void spawnbullet()
     {
-        if (_shootableGO != null && currentShootable == null)
+        if (_shootableGO != null && _currentShootable == null)
         {
             if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
             {
-                currentShootable = shootableComp.InstantiateShootable();
-                if (currentShootable != null)
+                _currentShootable = shootableComp.InstantiateShootable();
+                if (_currentShootable != null)
                 {
-                    currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-                    currentShootable.gameObject.transform.SetParent(transform);
+                    _currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                    _currentShootable.gameObject.transform.SetParent(transform);
                 }
             }
         }
+    }
 
-        if (currentShootable != null)
+    public void Shoot()
+    {        
+        if (_currentShootable != null)
         {
-            currentShootable.gameObject.transform.SetParent(null);
-            currentShootable.ShootResponse();
-            currentShootable = null;
+            _currentShootable.gameObject.transform.SetParent(null);
+            _currentShootable.ShootResponse();
+            _currentShootable = null;
         }
     }
 
