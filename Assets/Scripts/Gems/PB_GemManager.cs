@@ -131,6 +131,9 @@ public class PB_GemManager : MonoBehaviour
             {
                 if (!_gemsArray.Contains(gemComp))
                 {
+                    gemComp.gemManager = this;
+                    gemComp.SetGemType(PB_EGemType.GOLD);
+
                     _gemsArray.Add(gemComp);
                     _currentGemsInGame++;
                 }

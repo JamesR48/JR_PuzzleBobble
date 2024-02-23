@@ -21,45 +21,38 @@ public class PB_CannonComponent : MonoBehaviour
     {
         if (_shootableGO != null && currentShootable == null)
         {
-            GameObject newShootableGO = Instantiate(_shootableGO);
-
-            if (newShootableGO != null && newShootableGO.TryGetComponent(out PB_IShootable shootableComp))
+            if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
             {
-                currentShootable = shootableComp;
-                currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                currentShootable = shootableComp.InstantiateShootable();
+                if(currentShootable != null)
+                {
+                    currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                    currentShootable.gameObject.transform.SetParent(transform);
+                }
             }
         }
-
-        //if (_shootableGO != null)
-        //{
-        //    _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-        //}
     }
     public void Shoot()
     {
         if (_shootableGO != null && currentShootable == null)
         {
-            GameObject newShootableGO = Instantiate(_shootableGO);
-
-            if (newShootableGO != null && newShootableGO.TryGetComponent(out PB_IShootable shootableComp))
+            if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
             {
-                currentShootable = shootableComp;
-                currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                currentShootable = shootableComp.InstantiateShootable();
+                if (currentShootable != null)
+                {
+                    currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+                    currentShootable.gameObject.transform.SetParent(transform);
+                }
             }
         }
 
-        //if (_shootableGO != null && _shootableGO.TryGetComponent(out PB_IShootable shootableComp))
-        //{
-        //    _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-        //    shootableComp.ShootResponse();
-        //}
-
         if (currentShootable != null)
         {
+            currentShootable.gameObject.transform.SetParent(null);
             currentShootable.ShootResponse();
             currentShootable = null;
         }
-
     }
 
     public void SetShootableGO(GameObject shootable)
@@ -69,14 +62,7 @@ public class PB_CannonComponent : MonoBehaviour
         if (_shootableGO != null)
         {
             _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (currentShootable != null)
-        {
-            currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+            _shootableGO.transform.SetParent(transform, true);
         }
     }
 
