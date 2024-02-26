@@ -11,12 +11,6 @@ public class PB_MapConfigSO : ScriptableObject
     public int _mapColumns { get; private set; }
     [field: SerializeField]
     public int _mapRows { get; private set; }
-    [field: SerializeField]
-    public int _leftPadding { get; private set; }
-    [field: SerializeField]
-    public int _rightPadding { get; private set; }
-    [field: SerializeField]
-    public int _upperPadding { get; private set;}
 
     private Dictionary<char, PB_EGemType> _gemTypeMap = new Dictionary<char, PB_EGemType>()
     {
