@@ -14,7 +14,9 @@ public class PB_CharacterComponent : MonoBehaviour
     [SerializeField]
     private Transform _nextGemPosition;
 
-    PB_GemComponent _nextGem = null;
+    private PB_GemManager _gemManager;
+    private PB_GemComponent _nextGem = null;
+    private PB_GemComponent _currentGem = null;
 
     private void OnEnable()
     {
@@ -23,6 +25,8 @@ public class PB_CharacterComponent : MonoBehaviour
             _inputReader.shootEvent += OnShoot;
             _inputReader.turnEvent += OnTurn;
         }
+
+        //UpdateGemsToShoot();
     }
 
     private void OnDisable()
@@ -55,23 +59,38 @@ public class PB_CharacterComponent : MonoBehaviour
         }
     }
 
-    public void InitShootableGems(PB_GemComponent[] gems)
+    public void UpdateGemsToShoot()
     {
-        //if (_cannonGO != null)
-        //{
-        //    _cannonGO.SetShootableGO(gems[0].gameObject);
-        //}
-        //gems[1].transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
-        //_nextGem = gems[1];
+        if (_cannonGO != null && _gemManager != null)
+        {
+            if (_nextGem != null)
+            {
+                _currentGem = _nextGem;
+                _nextGem = null;
+            }
+
+            if (_nextGem == null)
+            {
+                _nextGem = _gemManager.SpawnNewGem();
+                if (_nextGem != null)
+                {
+                    _nextGem.gameObject.transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
+                }
+            }
+            if (_currentGem == null)
+            {
+                _currentGem = _gemManager.SpawnNewGem();
+            }
+
+            if (_currentGem != null)
+            {
+                _cannonGO.SetGemToShoot(_currentGem);
+            }
+        }
     }
 
-    public void UpdateShootableGems(PB_GemComponent gem)
+    public void SetGemManager(PB_GemManager gemManager)
     {
-        if (_cannonGO != null)
-        {
-            _cannonGO.SetShootableGO(_nextGem.gameObject);
-        }
-        gem.transform.SetPositionAndRotation(_nextGemPosition.position, _nextGemPosition.rotation);
-        _nextGem = gem;
+        _gemManager = gemManager;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PB_CannonComponent : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _shootableGO = null;
+    private PB_GemComponent _gemGO = null;
     [SerializeField]
     private Transform _shootPosition;
     [SerializeField]
@@ -15,59 +15,31 @@ public class PB_CannonComponent : MonoBehaviour
 
     private float currentFireRateTimer = 0.0f;
 
-    private PB_IShootable _currentShootable = null;
-    private PB_IShootable _nextShootable = null;
+    private PB_GemComponent _gemToShoot = null;
 
     private void Start()
     {
-        if (_shootableGO != null && _currentShootable == null)
-        {
-            if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
-            {
-                _currentShootable = shootableComp.InstantiateShootable();
-                if(_currentShootable != null)
-                {
-                    _currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-                    _currentShootable.gameObject.transform.SetParent(transform);
-                }
-            }
-        }
-    }
-
-    public void spawnbullet()
-    {
-        if (_shootableGO != null && _currentShootable == null)
-        {
-            if (_shootableGO.TryGetComponent(out PB_IShootable shootableComp))
-            {
-                _currentShootable = shootableComp.InstantiateShootable();
-                if (_currentShootable != null)
-                {
-                    _currentShootable.gameObject.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-                    _currentShootable.gameObject.transform.SetParent(transform);
-                }
-            }
-        }
     }
 
     public void Shoot()
     {        
-        if (_currentShootable != null)
+        if (_gemToShoot != null)
         {
-            _currentShootable.gameObject.transform.SetParent(null);
-            _currentShootable.ShootResponse();
-            _currentShootable = null;
+            _gemToShoot.gameObject.transform.SetParent(null);
+            _gemToShoot.ShootResponse();
+            _gemToShoot = null;
         }
     }
 
-    public void SetShootableGO(GameObject shootable)
+    public void SetGemToShoot(PB_GemComponent newGem)
     {
-        _shootableGO = shootable;
+        _gemToShoot = newGem;
 
-        if (_shootableGO != null)
+        if (_gemToShoot != null)
         {
-            _shootableGO.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
-            _shootableGO.transform.SetParent(transform, true);
+            _gemToShoot.DisableCollision();
+            _gemToShoot.transform.SetPositionAndRotation(_shootPosition.position, _shootPosition.rotation);
+            _gemToShoot.transform.SetParent(transform);
         }
     }
 

@@ -5,24 +5,36 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public enum PB_EGemType
+public enum PB_EGemColor
 {
     NONE,
     DIRT,
-    SILVER,
-    GOLD,
-    RUBY,
-    AZURITE,
-    EMERALD
+    WHITE,
+    YELLOW,
+    RED,
+    BLUE,
+    GREEN
 }
 
-public class PB_GemComponent : MonoBehaviour, PB_IShootable
+public enum PB_EGemType
+{
+    NONE,
+    EARTH,
+    ROCK,
+    METAL,
+    GEM
+}
+
+public class PB_GemComponent : MonoBehaviour
 {
     [SerializeField]
     private PB_GameObjectEventChannelSO _onSpawnEventChannel = default;
 
     [SerializeField]
     private PB_EGemType _gemType = PB_EGemType.NONE;
+
+    [SerializeField]
+    private PB_EGemColor _gemColor = PB_EGemColor.NONE;
 
     private PB_GemManager _gemManager;
     public PB_GemManager gemManager { set { _gemManager = value; } }
@@ -37,10 +49,12 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
     public bool bMarkedToDestroy { get { return _bMarkedToDestroy; } set { _bMarkedToDestroy = value; } }
 
     private PB_MoveComponent _moveComponent;
+    private CircleCollider2D _colliderComponent;
 
     private void OnEnable()
     {
         _moveComponent = GetComponent<PB_MoveComponent>();
+        _colliderComponent = GetComponent<CircleCollider2D>();
     }
 
     public void SetGemType(PB_EGemType type)
@@ -53,8 +67,23 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
         return _gemType;
     }
 
+    public void SetGemColor(PB_EGemColor color)
+    {
+        _gemColor = color;
+    }
+
+    public PB_EGemColor GetGemColor()
+    {
+        return _gemColor;
+    }
+
     public void ShootResponse()
     {
+        if (_colliderComponent != null)
+        {
+            _colliderComponent.enabled = true;
+        }
+
         if (_moveComponent != null)
         {
             _moveComponent.enabled = true;
@@ -63,17 +92,33 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
         }
     }
 
-    public PB_IShootable InstantiateShootable()
+    public void DisableCollision()
     {
-        PB_IShootable spawnedGem = Instantiate(this);
-        _onSpawnEventChannel.RaiseEvent(spawnedGem.gameObject);
-        return spawnedGem;
+        if(_colliderComponent != null)
+        {  
+            _colliderComponent.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_moveComponent != null && _moveComponent.isActiveAndEnabled) 
         {
+            PB_BoundComponent boundComp = null;
+            if (collision.gameObject.TryGetComponent<PB_BoundComponent>(out boundComp))
+            {
+                if(boundComp != null && boundComp.GetBoundType() == PB_EBoundType.REPEL)
+                {
+                    // TODO: 
+                    // CREATE EVENT TO KNOW WHEN CEILING IS DOWN, ADD IT TO THE UPPER BOUND
+
+                    Vector3 newDirection = _moveComponent.GetVelocity().normalized;
+                    newDirection.x *= -1.0f;
+                    _moveComponent.OnStartMoving(newDirection);
+                    return;
+                }
+            }
+
             _moveComponent.OnStartMoving(Vector3.zero);
             _moveComponent.enabled = false;
 
@@ -82,17 +127,15 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
                 Vector2Int nearesTile = _gemManager.NearestTile(transform.position.x, transform.position.y);
                 _gemTilePosition = nearesTile;
 
-                PB_CannonComponent cannon = FindObjectOfType<PB_CannonComponent>();
-                if (cannon != null)
-                {
-                    cannon.spawnbullet();
-                }
+                _gemManager.UpdateShootableGems();
 
                 List<PB_GemComponent> groupOfEquals = GetEqualNeighbours();
                 if(groupOfEquals.Count < 3)
                 {
                     transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
                     _gemManager.gemsArray.Add(this);
+                    
+                    _gemManager.UpdateUpperLimit();
                 }
                 else
                 {
@@ -111,12 +154,12 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
                     foreach (PB_GemComponent gem in _gemManager.gemsArray)
                     {
                         bInCeiling = false;
-                        if(gem.gemTilePosition.y != _gemManager.Up)
+                        if(gem.gemTilePosition.y != _gemManager.GetUpperLimit())
                         {
                             connectedGems = gem.GetConnectedGems();
                             foreach (PB_GemComponent connected in connectedGems)
                             {
-                                if(connected.gemTilePosition.y == _gemManager.Up)
+                                if(connected.gemTilePosition.y == _gemManager.GetUpperLimit())
                                 {
                                     bInCeiling = true;
                                     break;
@@ -140,7 +183,7 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
                     foreach (PB_GemComponent destroyG in _gemManager.gemsToDestroy)
                     {
                         Destroy(destroyG.gameObject);
-                    }
+                    }                    
                 }
             }
         }
@@ -171,13 +214,13 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
 
     private bool IsNextTo(PB_GemComponent gem)
     {
-        Vector2Int topLeft = new Vector2Int( _gemTilePosition.x - ((_gemTilePosition.y + 1) % 2) , _gemTilePosition.y - 1);
+        Vector2Int topLeft = new Vector2Int( _gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) , _gemTilePosition.y + 1);
         if(gem.gemTilePosition == topLeft)
         {
             return true;
         }
 
-        Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1) % 2) + 1, _gemTilePosition.y - 1);
+        Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y + 1);
         if (gem.gemTilePosition == topRight)
         {
             return true;
@@ -195,13 +238,13 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
             return true;
         }
 
-        Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1) % 2), _gemTilePosition.y + 1);
+        Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2), _gemTilePosition.y - 1);
         if (gem.gemTilePosition == botLeft)
         {
             return true;
         }
 
-        Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1) % 2) + 1, _gemTilePosition.y + 1);
+        Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y - 1);
         if (gem.gemTilePosition == botRight)
         {
             return true;
@@ -227,7 +270,7 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
         {
             foreach (PB_GemComponent neighbour in gem.gemNeighbours)
             {
-                if (GetGemType() == neighbour.GetGemType() && !equalGems.Contains(neighbour))
+                if (GetGemType() == neighbour.GetGemType() && GetGemColor() == neighbour.GetGemColor() && !equalGems.Contains(neighbour))
                 {
                     equalGems.Add(neighbour);
                     FindEqualNeighbours(equalGems, neighbour);
@@ -256,7 +299,7 @@ public class PB_GemComponent : MonoBehaviour, PB_IShootable
                 if (!neighbour.bMarkedToDestroy && !connectedGems.Contains(neighbour))
                 {
                     connectedGems.Add(neighbour);
-                    if(neighbour.gemTilePosition.y == _gemManager.Up)
+                    if(neighbour.gemTilePosition.y == _gemManager.GetUpperLimit())
                     {
                         break;
                     }
