@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Puzzle Bobble/Maps/New Map Config")]
 public class PB_MapConfigSO : ScriptableObject
 {
     [SerializeField]
     private TextAsset _mapOrder;
+    [SerializeField]
+    private Grid _levelGridPrefab;
     [field: SerializeField]
     public int _mapColumns { get; private set; }
     [field: SerializeField]
@@ -60,5 +63,10 @@ public class PB_MapConfigSO : ScriptableObject
                 }
             }
         }
+    }
+
+    public Grid GetMapGridPrefab()
+    {
+        return _levelGridPrefab;
     }
 }

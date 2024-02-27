@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3969288151234954139}
   - component: {fileID: 3969288151234954138}
+  - component: {fileID: 919329834365601984}
   m_Layer: 0
   m_Name: GemManager
   m_TagString: Untagged
@@ -44,8 +45,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f06daf1bd37146b8cff37e6644165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundTilemap: {fileID: 0}
-  _currentMapGems: {fileID: 11400000, guid: 06dc8942310227f45b870bbe9b8e861d, type: 2}
-  _characterComponent: {fileID: 0}
   _gemPrefab: {fileID: 8235600693371696137, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
   _maxGemsInGame: 33
+--- !u!114 &919329834365601984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969288151234954137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 95d031f582adf3042bd773d4c241e8b0, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3969288151234954138}
+        m_TargetAssemblyTypeName: PB_GemManager, Assembly-CSharp
+        m_MethodName: UpdateUpperLimit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

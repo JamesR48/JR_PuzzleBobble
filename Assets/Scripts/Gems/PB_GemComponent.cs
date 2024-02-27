@@ -104,18 +104,24 @@ public class PB_GemComponent : MonoBehaviour
     {
         if (_moveComponent != null && _moveComponent.isActiveAndEnabled) 
         {
+            bool bIsStickedToWall = false;
+
             PB_BoundComponent boundComp = null;
             if (collision.gameObject.TryGetComponent<PB_BoundComponent>(out boundComp))
             {
-                if(boundComp != null && boundComp.GetBoundType() == PB_EBoundType.REPEL)
+                if(boundComp != null)
                 {
-                    // TODO: 
-                    // CREATE EVENT TO KNOW WHEN CEILING IS DOWN, ADD IT TO THE UPPER BOUND
-
-                    Vector3 newDirection = _moveComponent.GetVelocity().normalized;
-                    newDirection.x *= -1.0f;
-                    _moveComponent.OnStartMoving(newDirection);
-                    return;
+                    if(boundComp.GetBoundType() == PB_EBoundType.REPEL)
+                    {
+                        Vector3 newDirection = _moveComponent.GetVelocity().normalized;
+                        newDirection.x *= -1.0f;
+                        _moveComponent.OnStartMoving(newDirection);
+                        return;
+                    }
+                    else 
+                    {
+                        bIsStickedToWall = true;
+                    }
                 }
             }
 
@@ -129,13 +135,20 @@ public class PB_GemComponent : MonoBehaviour
 
                 _gemManager.UpdateShootableGems();
 
+                if(bIsStickedToWall)
+                {
+                    transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
+                    _gemManager.gemsArray.Add(this);
+                    return;
+                }
+
                 List<PB_GemComponent> groupOfEquals = GetEqualNeighbours();
                 if(groupOfEquals.Count < 3)
                 {
                     transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
                     _gemManager.gemsArray.Add(this);
                     
-                    _gemManager.UpdateUpperLimit();
+                    //_gemManager.UpdateUpperLimit();
                 }
                 else
                 {
@@ -147,14 +160,17 @@ public class PB_GemComponent : MonoBehaviour
 
                     foreach(PB_GemComponent gem in _gemManager.gemsArray)
                     {
-                        gem.bMarkedToDestroy = false;
+                        if (gem != null)
+                        {
+                            gem.bMarkedToDestroy = false;
+                        }
                     }
 
                     bool bInCeiling = false;
                     foreach (PB_GemComponent gem in _gemManager.gemsArray)
                     {
                         bInCeiling = false;
-                        if(gem.gemTilePosition.y != _gemManager.GetUpperLimit())
+                        if(gem != null &&  gem.gemTilePosition.y != _gemManager.GetUpperLimit())
                         {
                             connectedGems = gem.GetConnectedGems();
                             foreach (PB_GemComponent connected in connectedGems)
@@ -182,7 +198,10 @@ public class PB_GemComponent : MonoBehaviour
 
                     foreach (PB_GemComponent destroyG in _gemManager.gemsToDestroy)
                     {
-                        Destroy(destroyG.gameObject);
+                        if(destroyG != null)
+                        {
+                            Destroy(destroyG.gameObject);
+                        }
                     }                    
                 }
             }
@@ -204,7 +223,7 @@ public class PB_GemComponent : MonoBehaviour
             
             foreach (PB_GemComponent gem in _gemManager.gemsArray)
             {
-                if(gem != this && IsNextTo(gem))
+                if(gem != null && gem != this && IsNextTo(gem))
                 {
                     _gemNeighbours.Add(gem);
                 }
@@ -264,16 +283,19 @@ public class PB_GemComponent : MonoBehaviour
 
     private void FindEqualNeighbours(List<PB_GemComponent> equalGems, PB_GemComponent gem)
     {
-        gem.FindNeighbours();
-        
-        if(gem.gemNeighbours != null && gem.gemNeighbours.Count > 0)
+        if(gem != null)
         {
-            foreach (PB_GemComponent neighbour in gem.gemNeighbours)
+            gem.FindNeighbours();
+
+            if (gem.gemNeighbours != null && gem.gemNeighbours.Count > 0)
             {
-                if (GetGemType() == neighbour.GetGemType() && GetGemColor() == neighbour.GetGemColor() && !equalGems.Contains(neighbour))
+                foreach (PB_GemComponent neighbour in gem.gemNeighbours)
                 {
-                    equalGems.Add(neighbour);
-                    FindEqualNeighbours(equalGems, neighbour);
+                    if (GetGemType() == neighbour.GetGemType() && GetGemColor() == neighbour.GetGemColor() && !equalGems.Contains(neighbour))
+                    {
+                        equalGems.Add(neighbour);
+                        FindEqualNeighbours(equalGems, neighbour);
+                    }
                 }
             }
         }
@@ -290,20 +312,23 @@ public class PB_GemComponent : MonoBehaviour
 
     private void FindConnectedGems(List<PB_GemComponent> connectedGems, PB_GemComponent gem)
     {
-        gem.FindNeighbours();
-
-        if (gem.gemNeighbours != null && gem.gemNeighbours.Count > 0)
+        if (gem != null)
         {
-            foreach (PB_GemComponent neighbour in gem.gemNeighbours)
+            gem.FindNeighbours();
+
+            if (gem.gemNeighbours != null && gem.gemNeighbours.Count > 0)
             {
-                if (!neighbour.bMarkedToDestroy && !connectedGems.Contains(neighbour))
+                foreach (PB_GemComponent neighbour in gem.gemNeighbours)
                 {
-                    connectedGems.Add(neighbour);
-                    if(neighbour.gemTilePosition.y == _gemManager.GetUpperLimit())
+                    if (!neighbour.bMarkedToDestroy && !connectedGems.Contains(neighbour))
                     {
-                        break;
+                        connectedGems.Add(neighbour);
+                        if (neighbour.gemTilePosition.y == _gemManager.GetUpperLimit())
+                        {
+                            break;
+                        }
+                        FindConnectedGems(connectedGems, neighbour);
                     }
-                    FindConnectedGems(connectedGems, neighbour);
                 }
             }
         }

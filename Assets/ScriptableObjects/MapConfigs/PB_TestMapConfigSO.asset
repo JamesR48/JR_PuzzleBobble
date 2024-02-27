@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: PB_TestMapConfigSO
   m_EditorClassIdentifier: 
   _mapOrder: {fileID: 4900000, guid: 2aa32607d7c5a874fa5c257484fc89ca, type: 3}
+  _levelGridPrefab: {fileID: 6576334583619333537, guid: f5baf5ac48904714dab7b5b447e929e9, type: 3}
   <_mapColumns>k__BackingField: 12
   <_mapRows>k__BackingField: 14
-  <_leftPadding>k__BackingField: 0
-  <_rightPadding>k__BackingField: 0
-  <_upperPadding>k__BackingField: 0
