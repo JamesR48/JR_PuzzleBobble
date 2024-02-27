@@ -38,8 +38,6 @@ public class PB_GemManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InitMapGems();
-
         if(_characterComponent)
         {
             _characterComponent.SetGemManager(this);
@@ -47,13 +45,10 @@ public class PB_GemManager : MonoBehaviour
         }
     }
 
-    private void InitMapGems()
+    public void InitMapGems(PB_EGemType[,] mapGemTypes, PB_EGemColor[,] mapGemColors, int mapRows, int mapCols)
     {
         if (_currentMapGems != null)
         {
-            int mapRows = _currentMapGems._mapRows;
-            int mapCols = _currentMapGems._mapColumns;
-
             Right = (_backgroundTilemap.origin.x) + mapCols-1;
             Left = _backgroundTilemap.origin.x;
             Up = _backgroundTilemap.origin.y + mapRows-1;
@@ -61,9 +56,6 @@ public class PB_GemManager : MonoBehaviour
 
             _gemsToDestroy = new List<PB_GemComponent>();
             _gemsArray = new List<PB_GemComponent>();
-            PB_EGemType[,] mapGemTypes;
-            PB_EGemColor[,] mapGemColors;
-            _currentMapGems.GetMapGemData(out mapGemTypes, out mapGemColors);
 
             if(mapGemTypes == null || mapGemColors == null)
             {
