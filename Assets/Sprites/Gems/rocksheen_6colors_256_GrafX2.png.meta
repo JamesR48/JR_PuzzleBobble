@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -999,6 +999,7 @@ TextureImporter:
     nameFileIdTable:
       rocksheen_6colors_256_GrafX2_25: 1719990565
       rocksheen_6colors_256_GrafX2_40: -888077606
+      rocksheen_6colors_256_GrafX2_10: -397535446
       rocksheen_6colors_256_GrafX2_7: 1000582463
       rocksheen_6colors_256_GrafX2_13: -2036187887
       rocksheen_6colors_256_GrafX2_38: -973637043
@@ -1006,12 +1007,11 @@ TextureImporter:
       rocksheen_6colors_256_GrafX2_26: 771603830
       rocksheen_6colors_256_GrafX2_4: -1941101221
       rocksheen_6colors_256_GrafX2_6: 571062489
-      rocksheen_6colors_256_GrafX2_20: -648096086
+      rocksheen_6colors_256_GrafX2_11: 729100236
       rocksheen_6colors_256_GrafX2_9: 855193483
       rocksheen_6colors_256_GrafX2_14: 1626247981
       rocksheen_6colors_256_GrafX2_5: -1902019406
       rocksheen_6colors_256_GrafX2_24: -476554788
-      rocksheen_6colors_256_GrafX2_28: 449729466
       rocksheen_6colors_256_GrafX2_0: -1902048573
       rocksheen_6colors_256_GrafX2_27: -1438265149
       rocksheen_6colors_256_GrafX2_32: 433196911
@@ -1037,8 +1037,8 @@ TextureImporter:
       rocksheen_6colors_256_GrafX2_12: -2088105514
       rocksheen_6colors_256_GrafX2_36: 398726267
       rocksheen_6colors_256_GrafX2_41: 1638638557
-      rocksheen_6colors_256_GrafX2_11: 729100236
-      rocksheen_6colors_256_GrafX2_10: -397535446
+      rocksheen_6colors_256_GrafX2_20: -648096086
+      rocksheen_6colors_256_GrafX2_28: 449729466
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

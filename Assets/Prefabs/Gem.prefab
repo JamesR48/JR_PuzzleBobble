@@ -64,6 +64,7 @@ MonoBehaviour:
   _onSpawnEventChannel: {fileID: 11400000, guid: f4e00224b846dae4dbb075a9d06148cd, type: 2}
   _gemType: 2
   _gemColor: 4
+  _rendererComponent: {fileID: 8235600693676273428}
 --- !u!58 &37720405223360046
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -175,12 +176,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 71003414, guid: 2300294ab571f74479d384ba5a2ff1ba, type: 3}
+  m_Sprite: {fileID: -1905002119, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

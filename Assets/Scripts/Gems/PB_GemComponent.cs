@@ -36,6 +36,9 @@ public class PB_GemComponent : MonoBehaviour
     [SerializeField]
     private PB_EGemColor _gemColor = PB_EGemColor.NONE;
 
+    [SerializeField]
+    private SpriteRenderer _rendererComponent;
+
     private PB_GemManager _gemManager;
     public PB_GemManager gemManager { set { _gemManager = value; } }
 
@@ -75,6 +78,14 @@ public class PB_GemComponent : MonoBehaviour
     public PB_EGemColor GetGemColor()
     {
         return _gemColor;
+    }
+
+    public void SetGemSprite(Sprite InSprite)
+    {
+        if(_rendererComponent != null && InSprite != null)
+        {
+            _rendererComponent.sprite = InSprite;
+        }
     }
 
     public void ShootResponse()

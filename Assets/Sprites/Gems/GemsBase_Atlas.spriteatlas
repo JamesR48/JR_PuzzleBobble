@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GemsBase_Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -809894556, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1582166291, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 644549502, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 1182309928, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 256475004, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 480654030, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 606692039, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -89414416, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -403776496, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1905002119, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 692740358, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1611630662, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 1928210076, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -3871624, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1204606449, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1236461484, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -625523107, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -1425401952, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: -318050715, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 1729535817, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 306041125, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 1789172551, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 1508425185, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  - {fileID: 330998402, guid: 0024297d5e17c3d43afb13a9cc00a2b5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - E_5
+  - E_4
+  - E_1
+  - E_0
+  - E_3
+  - E_2
+  - R_4
+  - R_5
+  - R_2
+  - R_3
+  - R_0
+  - R_1
+  - G_3
+  - G_2
+  - G_1
+  - G_0
+  - G_5
+  - G_4
+  - M_5
+  - M_6
+  - M_1
+  - M_0
+  - M_3
+  - M_2
+  m_RenderDataMap: {}
+  m_Tag: GemsBase_Atlas
+  m_IsVariant: 0

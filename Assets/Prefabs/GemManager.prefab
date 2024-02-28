@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gemPrefab: {fileID: 8235600693371696137, guid: ce941b17fdd5aa241a65e104eaeb550c, type: 3}
+  _gemsSpriteAtlas: {fileID: 4343727234628468602, guid: c01072784d7c27c48a8d66b1714fcd71, type: 2}
   _maxGemsInGame: 33
 --- !u!114 &919329834365601984
 MonoBehaviour:

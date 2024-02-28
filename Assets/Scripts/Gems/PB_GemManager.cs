@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 
 public class PB_GemManager : MonoBehaviour
 {
     [SerializeField]
     private PB_GemComponent _gemPrefab;
+    [SerializeField]
+    private SpriteAtlas _gemsSpriteAtlas;
     [SerializeField]
     private int _maxGemsInGame = 33;
 
@@ -68,9 +72,7 @@ public class PB_GemManager : MonoBehaviour
                     PB_GemComponent newGem = Instantiate(_gemPrefab);
                     if (newGem != null)
                     {
-                        newGem.gemManager = this;
-                        newGem.SetGemType(currentType);
-                        newGem.SetGemColor(currentColor);
+                        SetNewGemData(newGem, currentType, currentColor);
 
                         // assign the new position of the ball
                         Vector3 newPos = new Vector3(mapData._leftBound + col, mapData._topBound - row, 0.0f);
@@ -104,6 +106,23 @@ public class PB_GemManager : MonoBehaviour
         }
     }
 
+    public void SetNewGemData(PB_GemComponent InOutGem, PB_EGemType InType, PB_EGemColor InColor)
+    {
+        if(InOutGem != null)
+        {
+            InOutGem.gemManager = this;
+            InOutGem.SetGemType(InType);
+            InOutGem.SetGemColor(InColor);
+
+            if (_gemsSpriteAtlas != null)
+            {
+                string newSpriteName = string.Format("{0}_{1}", InType.ToString()[0], (int)InColor - 1);
+                Sprite newGemSprite = _gemsSpriteAtlas.GetSprite(newSpriteName);
+                InOutGem.SetGemSprite(newGemSprite);
+            }
+        }
+    }
+
     public PB_GemComponent SpawnNewGem()
     {
         PB_GemComponent _newGem = null;
@@ -112,12 +131,9 @@ public class PB_GemManager : MonoBehaviour
             _newGem = Instantiate(_gemPrefab);
             if (_newGem != null && !_gemsArray.Contains(_newGem))
             {
-                _newGem.gemManager = this;
-
                 Int32 currentGemsCount = _gemsArray.Count - 1;
                 Int32 randomIndex = UnityEngine.Random.Range(0, currentGemsCount);
-                _newGem.SetGemType(_gemsArray[randomIndex].GetGemType());
-                _newGem.SetGemColor(_gemsArray[randomIndex].GetGemColor());
+                SetNewGemData(_newGem, _gemsArray[randomIndex].GetGemType(), _gemsArray[randomIndex].GetGemColor());
 
                 Debug.Log("TYPE: " + _newGem.GetGemType().ToString() + " COLOR: " + _newGem.GetGemColor().ToString());
 
