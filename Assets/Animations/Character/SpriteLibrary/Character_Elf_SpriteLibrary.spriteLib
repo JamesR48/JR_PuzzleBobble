@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 2081823275
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Tactician_SS_Multi_0
+      m_Hash: 1367462350
+      m_Sprite: {fileID: 780495465, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 684938473, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_1
+      m_Hash: 646373720
+      m_Sprite: {fileID: -699488449, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1302420868, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_2
+      m_Hash: -1081102110
+      m_Sprite: {fileID: -1179684029, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1297746600, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_3
+      m_Hash: -930578316
+      m_Sprite: {fileID: 1090128155, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -453529817, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  - m_Name: Angry
+    m_Hash: 16779677
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Tactician_SS_Multi_12
+      m_Hash: 2135154986
+      m_Sprite: {fileID: -1330194819, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1398296716, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_13
+      m_Hash: 138727868
+      m_Sprite: {fileID: 900073001, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1289483604, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_14
+      m_Hash: -1776270305
+      m_Sprite: {fileID: 609521991, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -125361082, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_15
+      m_Hash: -517507959
+      m_Sprite: {fileID: -775209631, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1704027152, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  - m_Name: Lost
+    m_Hash: -529060972
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Tactician_SS_Multi_16
+      m_Hash: 2016290099
+      m_Sprite: {fileID: -629269863, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -462021233, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_17
+      m_Hash: 254350757
+      m_Sprite: {fileID: 2117365497, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -28008004, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_18
+      m_Hash: -1617557452
+      m_Sprite: {fileID: 977318755, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 2092074048, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_19
+      m_Hash: -393135966
+      m_Sprite: {fileID: -1589667954, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -2106819438, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  - m_Name: Turn_Left
+    m_Hash: 626850648
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Tactician_SS_Multi_4
+      m_Hash: 1458312663
+      m_Sprite: {fileID: 1091512395, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 89908690, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_5
+      m_Hash: 569058625
+      m_Sprite: {fileID: 1707799970, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1383275971, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_6
+      m_Hash: -1193118469
+      m_Sprite: {fileID: 11933882, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 619124198, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_7
+      m_Hash: -807058323
+      m_Sprite: {fileID: -2005488132, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1170715960, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  - m_Name: Turn_Right
+    m_Hash: -1840480604
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Tactician_SS_Multi_0
+      m_Hash: 1367462350
+      m_Sprite: {fileID: 1091512395, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 89908690, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_8
+      m_Hash: 1599756796
+      m_Sprite: {fileID: 712753245, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1337584360, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_9
+      m_Hash: 677210474
+      m_Sprite: {fileID: 412930448, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 772454748, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_10
+      m_Hash: -1857191930
+      m_Sprite: {fileID: 677315162, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1820624426, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    - m_Name: Tactician_SS_Multi_11
+      m_Hash: -431312752
+      m_Sprite: {fileID: 250551707, guid: fe46c877afc1e7f42a098148492abfd7, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1388235649, guid: 534af70adc530624c89ad72c873f495f, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 5
+  m_PrimaryLibraryGUID: 1a940394d3c90d24687ade8bade90943
