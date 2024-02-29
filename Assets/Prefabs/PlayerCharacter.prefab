@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 820491580096661921}
   - component: {fileID: 820491580096661920}
   - component: {fileID: 2542604064008553350}
-  - component: {fileID: 6515652064885823540}
+  - component: {fileID: 5108237292844126772}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Library: []
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1a940394d3c90d24687ade8bade90943, type: 3}
---- !u!114 &6515652064885823540
+--- !u!114 &5108237292844126772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
