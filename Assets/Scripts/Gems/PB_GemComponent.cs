@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D.Animation;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public enum PB_EGemColor
@@ -38,6 +39,9 @@ public class PB_GemComponent : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _rendererComponent;
+
+    [SerializeField]
+    private SpriteLibrary _spriteLibraryComp;
 
     private PB_GemManager _gemManager;
     public PB_GemManager gemManager { set { _gemManager = value; } }
@@ -80,11 +84,16 @@ public class PB_GemComponent : MonoBehaviour
         return _gemColor;
     }
 
-    public void SetGemSprite(Sprite InSprite)
+    public void SetGemVisuals(Sprite InSprite, SpriteLibraryAsset InSpriteLib = null)
     {
         if(_rendererComponent != null && InSprite != null)
         {
             _rendererComponent.sprite = InSprite;
+        }
+
+        if(_spriteLibraryComp != null && InSpriteLib != null)
+        {
+            _spriteLibraryComp.spriteLibraryAsset = InSpriteLib;
         }
     }
 

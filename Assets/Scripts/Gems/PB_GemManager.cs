@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D;
+using UnityEngine.U2D.Animation;
 
 public class PB_GemManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PB_GemManager : MonoBehaviour
     private PB_GemComponent _gemPrefab;
     [SerializeField]
     private SpriteAtlas _gemsSpriteAtlas;
+    [SerializeField]
+    private List<SpriteLibraryAsset> _gemAnimations;
     [SerializeField]
     private int _maxGemsInGame = 33;
 
@@ -118,7 +121,12 @@ public class PB_GemManager : MonoBehaviour
             {
                 string newSpriteName = string.Format("{0}_{1}", InType.ToString()[0], (int)InColor - 1);
                 Sprite newGemSprite = _gemsSpriteAtlas.GetSprite(newSpriteName);
-                InOutGem.SetGemSprite(newGemSprite);
+                SpriteLibraryAsset newGemAnimation = null;
+                if(_gemAnimations != null && _gemAnimations[(int)InType - 1] != null)
+                {
+                    newGemAnimation = _gemAnimations[(int)InType - 1];
+                }
+                InOutGem.SetGemVisuals(newGemSprite, newGemAnimation);
             }
         }
     }

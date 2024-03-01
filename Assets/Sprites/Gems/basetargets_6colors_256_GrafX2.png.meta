@@ -441,7 +441,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_5
+      name: M_4
       rect:
         serializedVersion: 2
         x: 64
@@ -462,7 +462,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_6
+      name: M_5
       rect:
         serializedVersion: 2
         x: 80
@@ -620,6 +620,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       M_0: 1789172551
+      M_4: -318050715
       R_0: 692740358
       E_2: 480654030
       E_0: 1182309928
@@ -632,7 +633,6 @@ TextureImporter:
       M_3: 1508425185
       M_1: 306041125
       G_0: -1236461484
-      M_6: 1729535817
       G_2: -3871624
       E_1: 644549502
       R_2: -403776496
@@ -640,7 +640,7 @@ TextureImporter:
       R_5: -89414416
       G_5: -625523107
       G_1: -1204606449
-      M_5: -318050715
+      M_5: 1729535817
       R_1: -1611630662
       G_4: -1425401952
   spritePackingTag: 

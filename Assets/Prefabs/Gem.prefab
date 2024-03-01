@@ -285,6 +285,7 @@ MonoBehaviour:
   _gemType: 2
   _gemColor: 4
   _rendererComponent: {fileID: 1821320306158038471}
+  _spriteLibraryComp: {fileID: 2355491693745068948}
 --- !u!58 &37720405223360046
 CircleCollider2D:
   m_ObjectHideFlags: 0
