@@ -161,74 +161,92 @@ public class PB_GemComponent : MonoBehaviour
                     return;
                 }
 
-                List<PB_GemComponent> groupOfEquals = GetEqualNeighbours();
-                if(groupOfEquals.Count < 3)
+                Debug.Log("----- COLLIDED -----");
+                Debug.Log("Collision.gameobject: " + collision.gameObject);
+                Debug.Log("----- COLLIDED END -----");
+
+                PB_GemComponent collidedGem = null;
+                if (collision.gameObject.TryGetComponent<PB_GemComponent>(out collidedGem))
                 {
-                    Debug.Log("Ceiling: " + _gemManager.GetCeilingLevel());
-                    Debug.Log("Equals: " + groupOfEquals.Count);
-                    Debug.Log("TilePos: " + _gemTilePosition);
-                    Debug.Log("---------------");
-                    Debug.Log("Transform: " + transform.position);
-                    Debug.Log("---------------");
-
-                    transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
-                    _gemManager.gemsArray.Add(this);
-
-                    //_gemManager.UpdateUpperLimit();
-                }
-                else
-                {
-                    _gemManager.gemsToDestroy = groupOfEquals;
-                    _gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(groupOfEquals));
-
-                    List<PB_GemComponent> floatingGems = new List<PB_GemComponent>();
-                    List<PB_GemComponent> connectedGems = new List<PB_GemComponent>();
-
-                    foreach(PB_GemComponent gem in _gemManager.gemsArray)
+                    if (collidedGem != null)
                     {
-                        if (gem != null)
+                        List<PB_GemComponent> groupOfEquals = GetEqualNeighbours(collidedGem);
+                        if (groupOfEquals.Count < 3)
                         {
-                            gem.bMarkedToDestroy = false;
+                            Debug.Log("----- GEM -----");
+                            Debug.Log("CollidedColor: " + collidedGem._gemColor + ", CollidedType: " + collidedGem._gemType);
+                            Debug.Log("----- GEM END -----");
+
+                            Debug.Log("----- START -----");
+                            Debug.Log("---------------");
+                            Debug.Log("Ceiling: " + _gemManager.GetCeilingLevel());
+                            Debug.Log("Equals: " + groupOfEquals.Count);
+                            Debug.Log("TilePos: " + _gemTilePosition);
+                            Debug.Log("---------------");
+                            Debug.Log("Transform: " + transform.position);
+                            Debug.Log("---------------");
+                            Debug.Log("----- END -----");
+
+                            transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
+                            _gemManager.gemsArray.Add(this);
+
+                            //_gemManager.UpdateUpperLimit();
                         }
-                    }
-
-                    bool bInCeiling = false;
-                    foreach (PB_GemComponent gem in _gemManager.gemsArray)
-                    {
-                        bInCeiling = false;
-                        if(gem != null &&  gem.gemTilePosition.y != _gemManager.GetUpperLimit())
+                        else
                         {
-                            connectedGems = gem.GetConnectedGems();
-                            foreach (PB_GemComponent connected in connectedGems)
+                            _gemManager.gemsToDestroy = groupOfEquals;
+                            _gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(groupOfEquals));
+
+                            List<PB_GemComponent> floatingGems = new List<PB_GemComponent>();
+                            List<PB_GemComponent> connectedGems = new List<PB_GemComponent>();
+
+                            foreach (PB_GemComponent gem in _gemManager.gemsArray)
                             {
-                                if(connected.gemTilePosition.y == _gemManager.GetUpperLimit())
+                                if (gem != null)
                                 {
-                                    bInCeiling = true;
-                                    break;
+                                    gem.bMarkedToDestroy = false;
                                 }
                             }
 
-                            if(!bInCeiling)
+                            bool bInCeiling = false;
+                            foreach (PB_GemComponent gem in _gemManager.gemsArray)
                             {
-                                gem.bMarkedToDestroy = true;
-                                floatingGems.Add(gem);
+                                bInCeiling = false;
+                                if (gem != null && gem.gemTilePosition.y != _gemManager.GetUpperLimit())
+                                {
+                                    connectedGems = gem.GetConnectedGems();
+                                    foreach (PB_GemComponent connected in connectedGems)
+                                    {
+                                        if (connected.gemTilePosition.y == _gemManager.GetUpperLimit())
+                                        {
+                                            bInCeiling = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!bInCeiling)
+                                    {
+                                        gem.bMarkedToDestroy = true;
+                                        floatingGems.Add(gem);
+                                    }
+                                }
+                            }
+
+                            _gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(floatingGems));
+                            foreach (PB_GemComponent floating in floatingGems)
+                            {
+                                _gemManager.gemsToDestroy.Add(floating);
+                            }
+
+                            foreach (PB_GemComponent destroyG in _gemManager.gemsToDestroy)
+                            {
+                                if (destroyG != null)
+                                {
+                                    Destroy(destroyG.gameObject);
+                                }
                             }
                         }
                     }
-
-                    _gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(floatingGems));
-                    foreach (PB_GemComponent floating in floatingGems)
-                    {
-                        _gemManager.gemsToDestroy.Add(floating);
-                    }
-
-                    foreach (PB_GemComponent destroyG in _gemManager.gemsToDestroy)
-                    {
-                        if(destroyG != null)
-                        {
-                            Destroy(destroyG.gameObject);
-                        }
-                    }                    
                 }
             }
         }
@@ -249,7 +267,7 @@ public class PB_GemComponent : MonoBehaviour
             
             foreach (PB_GemComponent gem in _gemManager.gemsArray)
             {
-                if(gem != null && gem != this && IsNextTo(gem))
+                if(gem != null && gem != this && !_gemNeighbours.Contains(gem) && IsNextTo(gem))
                 {
                     _gemNeighbours.Add(gem);
                 }
@@ -259,18 +277,12 @@ public class PB_GemComponent : MonoBehaviour
 
     private bool IsNextTo(PB_GemComponent gem)
     {
-        int ceiling = _gemManager.GetCeilingLevel() != 0 ? _gemManager.GetCeilingLevel() + 1 : 0;
+        float oddRowOffset = ((_gemTilePosition.y - _gemManager.GetCeilingLevel()) % 2) * 0.5f;
         //Vector2Int topLeft = new Vector2Int( _gemTilePosition.x - ((_gemTilePosition.y - 1 + _gemManager.GetCeilingLevel()) % 2), _gemTilePosition.y + 1);
         //Vector2Int topLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2), _gemTilePosition.y + 1); 
         //Vector2Int topLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2), _gemTilePosition.y + 1);
         //if (gem.gemTilePosition == topLeft)
-        Vector3 topLeft = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f - 1.0f, transform.position.y + 1.0f, 0.0f);
-
-        //Debug.Log("---------------");
-        //Debug.Log("TOPLEFT: " + topLeft);
-        //Debug.Log("POS: " + _gemManager.NearestTile(topLeft.x, topLeft.y));
-        //Debug.Log("---------------");
-
+        Vector3 topLeft = new Vector3(transform.position.x - oddRowOffset - 0.5f , transform.position.y + 1.0f, 0.0f);
         //if (gem.transform.position == topLeft)
         if (gem.gemTilePosition == _gemManager.NearestTile(topLeft.x, topLeft.y))
         {
@@ -281,7 +293,7 @@ public class PB_GemComponent : MonoBehaviour
         //Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2) + 1, _gemTilePosition.y + 1);
         //Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2) + 1, _gemTilePosition.y + 1);
         //if (gem.gemTilePosition == topRight)
-        Vector3 topRight = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f + 1.0f, transform.position.y + 1.0f, 0.0f);
+        Vector3 topRight = new Vector3(transform.position.x - oddRowOffset + 0.5f, transform.position.y + 1.0f, 0.0f);
         //if (gem.transform.position == topRight)
         if (gem.gemTilePosition == _gemManager.NearestTile(topRight.x, topRight.y))
         {
@@ -290,7 +302,7 @@ public class PB_GemComponent : MonoBehaviour
 
         //Vector2Int Left = new Vector2Int(_gemTilePosition.x - 1, _gemTilePosition.y);
         //if (gem.gemTilePosition == Left)
-        Vector3 Left = new Vector3(transform.position.x - 1.0f, transform.position.y, 0.0f);
+        Vector3 Left = new Vector3(transform.position.x - oddRowOffset - 1.0f, transform.position.y, 0.0f);
         //if (gem.transform.position == Left)
         if (gem.gemTilePosition == _gemManager.NearestTile(Left.x, Left.y))
         {
@@ -299,7 +311,7 @@ public class PB_GemComponent : MonoBehaviour
 
         //Vector2Int Right = new Vector2Int(_gemTilePosition.x + 1, _gemTilePosition.y);
         //if (gem.gemTilePosition == Right)
-        Vector3 Right = new Vector3(transform.position.x + 1.0f, transform.position.y, 0.0f);
+        Vector3 Right = new Vector3(transform.position.x - oddRowOffset + 1.0f, transform.position.y, 0.0f);
         //if (gem.transform.position == Right)
         if (gem.gemTilePosition == _gemManager.NearestTile(Right.x, Right.y))
         {
@@ -310,7 +322,7 @@ public class PB_GemComponent : MonoBehaviour
         //Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2), _gemTilePosition.y - 1);
         //Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2), _gemTilePosition.y - 1);
         //if (gem.gemTilePosition == botLeft)
-        Vector3 botLeft = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f - 1.0f, transform.position.y - 1.0f, 0.0f);
+        Vector3 botLeft = new Vector3(transform.position.x - oddRowOffset - 0.5f, transform.position.y - 1.0f, 0.0f);
         //if (gem.transform.position == botLeft)
         if (gem.gemTilePosition == _gemManager.NearestTile(botLeft.x, botLeft.y))
         {
@@ -321,7 +333,7 @@ public class PB_GemComponent : MonoBehaviour
         //Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2) + 1, _gemTilePosition.y - 1);
         //Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2) + 1, _gemTilePosition.y - 1);
         //if (gem.gemTilePosition == botRight)
-        Vector3 botRight = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2)*0.5f + 1.0f, transform.position.y - 1.0f, 0.0f);
+        Vector3 botRight = new Vector3(transform.position.x - oddRowOffset + 0.5f, transform.position.y - 1.0f, 0.0f);
         //if (gem.transform.position == botRight)
         if (gem.gemTilePosition == _gemManager.NearestTile(botRight.x, botRight.y))
         {
@@ -331,20 +343,25 @@ public class PB_GemComponent : MonoBehaviour
         return false;
     }
 
-    public List<PB_GemComponent> GetEqualNeighbours()
+    public List<PB_GemComponent> GetEqualNeighbours(PB_GemComponent collidedGem = null)
     {
         List<PB_GemComponent> equalGemNeighbours = new List<PB_GemComponent>();
         equalGemNeighbours.Add(this);
-        FindEqualNeighbours(equalGemNeighbours, this);
+        FindEqualNeighbours(equalGemNeighbours, this, collidedGem);
 
         return equalGemNeighbours;
     }
 
-    private void FindEqualNeighbours(List<PB_GemComponent> equalGems, PB_GemComponent gem)
+    private void FindEqualNeighbours(List<PB_GemComponent> equalGems, PB_GemComponent gem, PB_GemComponent collidedGem = null)
     {
         if(gem != null)
         {
             gem.FindNeighbours();
+
+            if (collidedGem != null)
+            {
+                gemNeighbours.Add(collidedGem);
+            }
 
             if (gem.gemNeighbours != null && gem.gemNeighbours.Count > 0)
             {
