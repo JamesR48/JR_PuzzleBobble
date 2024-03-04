@@ -143,7 +143,7 @@ public class PB_GemManager : MonoBehaviour
                 Int32 randomIndex = UnityEngine.Random.Range(0, currentGemsCount);
                 SetNewGemData(_newGem, _gemsArray[randomIndex].GetGemType(), _gemsArray[randomIndex].GetGemColor());
 
-                Debug.Log("TYPE: " + _newGem.GetGemType().ToString() + " COLOR: " + _newGem.GetGemColor().ToString());
+                //Debug.Log("TYPE: " + _newGem.GetGemType().ToString() + " COLOR: " + _newGem.GetGemColor().ToString());
 
                 _currentGemsInGame++;
             }

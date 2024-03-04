@@ -29,9 +29,6 @@ public enum PB_EGemType
 public class PB_GemComponent : MonoBehaviour
 {
     [SerializeField]
-    private PB_GameObjectEventChannelSO _onSpawnEventChannel = default;
-
-    [SerializeField]
     private PB_EGemType _gemType = PB_EGemType.NONE;
 
     [SerializeField]
@@ -46,9 +43,11 @@ public class PB_GemComponent : MonoBehaviour
     private PB_GemManager _gemManager;
     public PB_GemManager gemManager { set { _gemManager = value; } }
 
+    [SerializeField]
     private Vector2Int _gemTilePosition = Vector2Int.zero;
     public Vector2Int gemTilePosition { get { return _gemTilePosition; } set { _gemTilePosition = value; } }
 
+    [SerializeField]
     private List<PB_GemComponent> _gemNeighbours;
     public List<PB_GemComponent> gemNeighbours { get { return _gemNeighbours; } }
 
@@ -165,9 +164,16 @@ public class PB_GemComponent : MonoBehaviour
                 List<PB_GemComponent> groupOfEquals = GetEqualNeighbours();
                 if(groupOfEquals.Count < 3)
                 {
+                    Debug.Log("Ceiling: " + _gemManager.GetCeilingLevel());
+                    Debug.Log("Equals: " + groupOfEquals.Count);
+                    Debug.Log("TilePos: " + _gemTilePosition);
+                    Debug.Log("---------------");
+                    Debug.Log("Transform: " + transform.position);
+                    Debug.Log("---------------");
+
                     transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
                     _gemManager.gemsArray.Add(this);
-                    
+
                     //_gemManager.UpdateUpperLimit();
                 }
                 else
@@ -253,38 +259,71 @@ public class PB_GemComponent : MonoBehaviour
 
     private bool IsNextTo(PB_GemComponent gem)
     {
-        Vector2Int topLeft = new Vector2Int( _gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) , _gemTilePosition.y + 1);
-        if(gem.gemTilePosition == topLeft)
+        int ceiling = _gemManager.GetCeilingLevel() != 0 ? _gemManager.GetCeilingLevel() + 1 : 0;
+        //Vector2Int topLeft = new Vector2Int( _gemTilePosition.x - ((_gemTilePosition.y - 1 + _gemManager.GetCeilingLevel()) % 2), _gemTilePosition.y + 1);
+        //Vector2Int topLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2), _gemTilePosition.y + 1); 
+        //Vector2Int topLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2), _gemTilePosition.y + 1);
+        //if (gem.gemTilePosition == topLeft)
+        Vector3 topLeft = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f - 1.0f, transform.position.y + 1.0f, 0.0f);
+
+        //Debug.Log("---------------");
+        //Debug.Log("TOPLEFT: " + topLeft);
+        //Debug.Log("POS: " + _gemManager.NearestTile(topLeft.x, topLeft.y));
+        //Debug.Log("---------------");
+
+        //if (gem.transform.position == topLeft)
+        if (gem.gemTilePosition == _gemManager.NearestTile(topLeft.x, topLeft.y))
         {
             return true;
         }
 
-        Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y + 1);
-        if (gem.gemTilePosition == topRight)
+        //Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y + 1);
+        //Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2) + 1, _gemTilePosition.y + 1);
+        //Vector2Int topRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2) + 1, _gemTilePosition.y + 1);
+        //if (gem.gemTilePosition == topRight)
+        Vector3 topRight = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f + 1.0f, transform.position.y + 1.0f, 0.0f);
+        //if (gem.transform.position == topRight)
+        if (gem.gemTilePosition == _gemManager.NearestTile(topRight.x, topRight.y))
         {
             return true;
         }
 
-        Vector2Int Left = new Vector2Int(_gemTilePosition.x - 1, _gemTilePosition.y);
-        if (gem.gemTilePosition == Left)
+        //Vector2Int Left = new Vector2Int(_gemTilePosition.x - 1, _gemTilePosition.y);
+        //if (gem.gemTilePosition == Left)
+        Vector3 Left = new Vector3(transform.position.x - 1.0f, transform.position.y, 0.0f);
+        //if (gem.transform.position == Left)
+        if (gem.gemTilePosition == _gemManager.NearestTile(Left.x, Left.y))
         {
             return true;
         }
 
-        Vector2Int Right = new Vector2Int(_gemTilePosition.x + 1, _gemTilePosition.y);
-        if (gem.gemTilePosition == Right)
+        //Vector2Int Right = new Vector2Int(_gemTilePosition.x + 1, _gemTilePosition.y);
+        //if (gem.gemTilePosition == Right)
+        Vector3 Right = new Vector3(transform.position.x + 1.0f, transform.position.y, 0.0f);
+        //if (gem.transform.position == Right)
+        if (gem.gemTilePosition == _gemManager.NearestTile(Right.x, Right.y))
         {
             return true;
         }
 
-        Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2), _gemTilePosition.y - 1);
-        if (gem.gemTilePosition == botLeft)
+        //Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + _gemManager.GetCeilingLevel()) % 2), _gemTilePosition.y - 1);
+        //Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2), _gemTilePosition.y - 1);
+        //Vector2Int botLeft = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2), _gemTilePosition.y - 1);
+        //if (gem.gemTilePosition == botLeft)
+        Vector3 botLeft = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2) * 0.5f - 1.0f, transform.position.y - 1.0f, 0.0f);
+        //if (gem.transform.position == botLeft)
+        if (gem.gemTilePosition == _gemManager.NearestTile(botLeft.x, botLeft.y))
         {
             return true;
         }
 
-        Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y + 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y - 1);
-        if (gem.gemTilePosition == botRight)
+        //Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + _gemManager.GetCeilingLevel()) % 2) + 1, _gemTilePosition.y - 1);
+        //Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1 + ceiling) % 2) + 1, _gemTilePosition.y - 1);
+        //Vector2Int botRight = new Vector2Int(_gemTilePosition.x - ((_gemTilePosition.y - 1) % 2) + 1, _gemTilePosition.y - 1);
+        //if (gem.gemTilePosition == botRight)
+        Vector3 botRight = new Vector3(transform.position.x - ((_gemTilePosition.y + _gemManager.GetCeilingLevel()) % 2)*0.5f + 1.0f, transform.position.y - 1.0f, 0.0f);
+        //if (gem.transform.position == botRight)
+        if (gem.gemTilePosition == _gemManager.NearestTile(botRight.x, botRight.y))
         {
             return true;
         }

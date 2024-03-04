@@ -487,7 +487,7 @@ MonoBehaviour:
   _playerCharacterPrefab: {fileID: 820491581160823170, guid: 1387cd57c615536428f34214f40eba32, type: 3}
   _ceilingBound: {fileID: 798266658}
   _onLowerCeilingEvent: {fileID: 11400000, guid: 95d031f582adf3042bd773d4c241e8b0, type: 2}
-  _timeToLowerCeiling: 60
+  _timeToLowerCeiling: 15
 --- !u!1001 &820491579496062861
 PrefabInstance:
   m_ObjectHideFlags: 0
