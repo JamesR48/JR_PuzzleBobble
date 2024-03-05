@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdc39a51789ed14eb6e468abe12bd65, type: 3}
+  m_Name: CavernScenesData_SO
+  m_EditorClassIdentifier: 
+  _levelScenes:
+  - {fileID: 11400000, guid: 7b41e41aaa59f9845b2eb40aa36210aa, type: 2}
+  _menuScenes:
+  - {fileID: 11400000, guid: cec3d145f9718494d9270627e6046c62, type: 2}
+  _currentLevelIndex: 1
