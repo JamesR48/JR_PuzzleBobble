@@ -5,7 +5,9 @@ using UnityEngine;
 public class PB_GameSceneSO : ScriptableObject
 {
     [Header("Information")]
-    
+
+    [SerializeField]
+    private Object _sceneObject = null;
     [SerializeField]
     private string _sceneName = "";
     [SerializeField]
@@ -20,4 +22,6 @@ public class PB_GameSceneSO : ScriptableObject
     private float _musicVolume = 0.2f;
 
     public string GetSceneName() {  return _sceneName; }
+
+    public Object GetSceneObject() { return _sceneObject; }
 }

@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: b06576df6dabcf04e8877b2bdc5d9d3d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dorven_ChrSelect_frame_Text_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 38
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3b47cff7c0f1f43a18dd8bff51d2c8
+      internalID: -648063147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dorven_ChrSelect_frame_Text_25
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 38
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db4a352dd99af374e8307e6f1672abec
+      internalID: 1079806867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dorven_ChrSelect_frame_Text_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 38
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e4d303bd54edc449a186386e788de1
+      internalID: -2058081435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dorven_ChrSelect_frame_Text_27
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 32
+        width: 38
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75566b41e9b339488fa7dba7bf13d29
+      internalID: 181692288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dorven_ChrSelect_frame_Text_1: 851091427
+      Dorven_ChrSelect_frame_Text_3: -634844299
+      Dorven_ChrSelect_frame_Text_24: -648063147
+      Dorven_ChrSelect_frame_Text_29: -559916757
+      Dorven_ChrSelect_frame_Text_5: -256396568
+      Dorven_ChrSelect_frame_Text_6: -831241156
+      Dorven_ChrSelect_frame_Text_21: 1082083180
+      Dorven_ChrSelect_frame_Text_9: -881719543
+      Dorven_ChrSelect_frame_Text_30: -2102184366
+      Dorven_ChrSelect_frame_Text_20: -2000839537
+      Dorven_ChrSelect_frame_Text_23: 891534632
+      Dorven_ChrSelect_frame_Text_0: -995479045
+      Dorven_ChrSelect_frame_Text_11: -1366512741
+      Dorven_ChrSelect_frame_Text_19: 1202929455
+      Dorven_ChrSelect_frame_Text_7: 1082345680
+      Dorven_ChrSelect_frame_Text_31: 137841333
+      Dorven_ChrSelect_frame_Text_4: -689898749
+      Dorven_ChrSelect_frame_Text_13: -2070776440
+      Dorven_ChrSelect_frame_Text_10: 1886675169
+      Dorven_ChrSelect_frame_Text_8: -685050736
+      Dorven_ChrSelect_frame_Text_16: -1506440907
+      Dorven_ChrSelect_frame_Text_17: 655263665
+      Dorven_ChrSelect_frame_Text_32: -1490006876
+      Dorven_ChrSelect_frame_Text_2: -1939880114
+      Dorven_ChrSelect_frame_Text_28: -1958700038
+      Dorven_ChrSelect_frame_Text_14: -1604537684
+      Dorven_ChrSelect_frame_Text_27: 181692288
+      Dorven_ChrSelect_frame_Text_26: -2058081435
+      Dorven_ChrSelect_frame_Text_25: 1079806867
+      Dorven_ChrSelect_frame_Text_12: 2113082070
+      Dorven_ChrSelect_frame_Text_33: 1510132710
+      Dorven_ChrSelect_frame_Text_15: -1324168020
+      Dorven_ChrSelect_frame_Text_18: -2067827028
+      Dorven_ChrSelect_frame_Text_22: -2026614608
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

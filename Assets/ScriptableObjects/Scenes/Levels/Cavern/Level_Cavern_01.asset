@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adf69e2a2e59c44c964d60f6c0b707f, type: 3}
   m_Name: Level_Cavern_01
   m_EditorClassIdentifier: 
-  _sceneName: Cavern_Section_01
+  _sceneObject: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+  _sceneName: GameLevels
   _shortDescription: 
   _sceneMusic: {fileID: 0}
   _musicVolume: 0.2

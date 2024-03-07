@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adf69e2a2e59c44c964d60f6c0b707f, type: 3}
+  m_Name: CharacterSelector_SO
+  m_EditorClassIdentifier: 
+  _sceneObject: {fileID: 102900000, guid: c77e934967525a9458f0ceb400691218, type: 3}
+  _sceneName: CharacterSelection
+  _shortDescription: 
+  _sceneMusic: {fileID: 0}
+  _musicVolume: 0.2
+  _levelData: {fileID: 0}

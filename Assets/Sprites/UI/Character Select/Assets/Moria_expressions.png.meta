@@ -110,7 +110,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 68
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -129,9 +129,9 @@ TextureImporter:
       name: Moria_expressions_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 69
         y: 68
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,9 +150,9 @@ TextureImporter:
       name: Moria_expressions_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 138
         y: 68
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -173,7 +173,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -192,9 +192,9 @@ TextureImporter:
       name: Moria_expressions_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 69
         y: 0
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -213,9 +213,9 @@ TextureImporter:
       name: Moria_expressions_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 138
         y: 0
-        width: 64
+        width: 69.333336
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}

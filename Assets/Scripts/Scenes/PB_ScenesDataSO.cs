@@ -24,9 +24,10 @@ public class PB_ScenesDataSO : ScriptableObject
         if (index <= _levelScenes.Count)
         {
             //Load Gameplay scene for the level
-            SceneManager.LoadSceneAsync("Gameplay" + index.ToString());
+            //SceneManager.LoadSceneAsync("Gameplay" + index.ToString());
+            SceneManager.LoadSceneAsync(_levelScenes[index - 1].GetSceneObject().name);
             //Load first part of the level in additive mode
-            SceneManager.LoadSceneAsync("Level" + index.ToString() + "Part1", LoadSceneMode.Additive);
+            //SceneManager.LoadSceneAsync("Level" + index.ToString() + "Part1", LoadSceneMode.Additive);
         }
         //reset the index if we have no more _levelScenes
         else _currentLevelIndex = 1;
