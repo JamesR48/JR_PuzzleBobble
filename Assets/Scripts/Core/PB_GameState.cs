@@ -20,6 +20,9 @@ public class PB_GameState : MonoBehaviour
     [SerializeField]
     private Vector3 _lowerPosition = Vector3.zero;
 
+    [SerializeField]
+    private PB_VoidEventChannelSO _onGemsDestroyedEvent = null;
+
     public void CheckGameWinningState()
     {
         if(_gemManager != null)

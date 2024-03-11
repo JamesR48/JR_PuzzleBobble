@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 58b66623f0c92bf4bb878a8396cb2ae2, type: 2}
+  _channel: {fileID: 11400000, guid: 39bfd63eecc8c3740a7cfd896d54b311, type: 2}
   OnEventRaised:
     m_PersistentCalls:
       m_Calls:

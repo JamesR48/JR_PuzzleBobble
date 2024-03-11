@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
@@ -16,6 +17,8 @@ public class PB_GemManager : MonoBehaviour
     private SpriteAtlas _gemsSpriteAtlas;
     [SerializeField]
     private List<SpriteLibraryAsset> _gemAnimations;
+    [SerializeField]
+    private PB_VoidEventChannelSO _onGemsDestroyedEvent = null;
     [SerializeField]
     private int _maxGemsInGame = 33;
 
@@ -138,7 +141,7 @@ public class PB_GemManager : MonoBehaviour
         {
             _newGem = Instantiate(_gemPrefab);
             Int32 currentGemsCount = _gemsArray.Count - 1;
-            if (_newGem != null && currentGemsCount > 0 && !_gemsArray.Contains(_newGem))
+            if (_newGem != null && _gemsArray.Count > 0 && !_gemsArray.Contains(_newGem))
             {
                 Int32 randomIndex = UnityEngine.Random.Range(0, currentGemsCount);
                 SetNewGemData(_newGem, _gemsArray[randomIndex].GetGemType(), _gemsArray[randomIndex].GetGemColor());
@@ -205,5 +208,68 @@ public class PB_GemManager : MonoBehaviour
             return _levelManager.GetCeilingLevel();
         }
         return 0;
+    }
+
+    public void UpdateGemsToDestroy(List<PB_GemComponent> collidingGems)
+    {
+        if(collidingGems.Count >= 3)
+        {
+            _gemsToDestroy = collidingGems;
+            _gemsArray = new List<PB_GemComponent>(_gemsArray.Except(collidingGems));
+
+            List<PB_GemComponent> floatingGems = new List<PB_GemComponent>();
+            List<PB_GemComponent> connectedGems = new List<PB_GemComponent>();
+
+            foreach (PB_GemComponent gem in _gemsArray)
+            {
+                if (gem != null)
+                {
+                    gem.bMarkedToDestroy = false;
+                }
+            }
+
+            bool bInCeiling = false;
+            foreach (PB_GemComponent gem in _gemsArray)
+            {
+                bInCeiling = false;
+                if (gem != null && gem.gemTilePosition.y != GetUpperLimit())
+                {
+                    connectedGems = gem.GetConnectedGems();
+                    foreach (PB_GemComponent connected in connectedGems)
+                    {
+                        if (connected.gemTilePosition.y == GetUpperLimit())
+                        {
+                            bInCeiling = true;
+                            break;
+                        }
+                    }
+
+                    if (!bInCeiling)
+                    {
+                        gem.bMarkedToDestroy = true;
+                        floatingGems.Add(gem);
+                    }
+                }
+            }
+
+            _gemsArray = new List<PB_GemComponent>(_gemsArray.Except(floatingGems));
+            foreach (PB_GemComponent floating in floatingGems)
+            {
+                _gemsToDestroy.Add(floating);
+            }
+
+            foreach (PB_GemComponent destroyG in _gemsToDestroy)
+            {
+                if (destroyG != null)
+                {
+                    Destroy(destroyG.gameObject);
+                }
+            }
+
+            if(_onGemsDestroyedEvent != null)
+            {
+                _onGemsDestroyedEvent.RaiseEvent();
+            }
+        }
     }
 }
