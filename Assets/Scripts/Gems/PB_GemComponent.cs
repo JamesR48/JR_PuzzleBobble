@@ -161,9 +161,11 @@ public class PB_GemComponent : MonoBehaviour
                     return;
                 }
 
+                /*
                 Debug.Log("----- COLLIDED -----");
                 Debug.Log("Collision.gameobject: " + collision.gameObject);
                 Debug.Log("----- COLLIDED END -----");
+                */
 
                 PB_GemComponent collidedGem = null;
                 if (collision.gameObject.TryGetComponent<PB_GemComponent>(out collidedGem))
@@ -173,6 +175,7 @@ public class PB_GemComponent : MonoBehaviour
                         List<PB_GemComponent> groupOfEquals = GetEqualNeighbours(collidedGem);
                         if (groupOfEquals.Count < 3)
                         {
+                            /*
                             Debug.Log("----- GEM -----");
                             Debug.Log("CollidedColor: " + collidedGem._gemColor + ", CollidedType: " + collidedGem._gemType);
                             Debug.Log("----- GEM END -----");
@@ -186,6 +189,7 @@ public class PB_GemComponent : MonoBehaviour
                             Debug.Log("Transform: " + transform.position);
                             Debug.Log("---------------");
                             Debug.Log("----- END -----");
+                            */
 
                             transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
                             _gemManager.gemsArray.Add(this);

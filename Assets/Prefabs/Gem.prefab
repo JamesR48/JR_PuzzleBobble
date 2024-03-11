@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1073891613, guid: f81ecf9156738f248944b77f819991c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -281,11 +281,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af59f4965fe9bf4f90ad9200ba0c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onSpawnEventChannel: {fileID: 11400000, guid: f4e00224b846dae4dbb075a9d06148cd, type: 2}
   _gemType: 2
   _gemColor: 4
   _rendererComponent: {fileID: 1821320306158038471}
   _spriteLibraryComp: {fileID: 2355491693745068948}
+  _gemTilePosition: {x: 0, y: 0}
+  _gemNeighbours: []
 --- !u!58 &37720405223360046
 CircleCollider2D:
   m_ObjectHideFlags: 0

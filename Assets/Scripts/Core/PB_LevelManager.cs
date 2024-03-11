@@ -22,7 +22,11 @@ public class PB_LevelManager : MonoBehaviour
     private PB_GemManager _gemManagerPrefab = null;
     [SerializeField]
     private PB_CharacterComponent _playerCharacterPrefab = null;
-    
+    [SerializeField]
+    private PB_CharacterDataSO _currentLevelCharacterData = null;
+    [SerializeField]
+    private PB_GameState _currentLevelGameState = null;
+
     [SerializeField]
     private PB_BoundComponent _ceilingBound = null;
     [SerializeField]
@@ -92,6 +96,11 @@ public class PB_LevelManager : MonoBehaviour
         if(_playerCharacterPrefab != null)
         {
             _currentLevelPlayer = Instantiate(_playerCharacterPrefab);
+            
+            if(_currentLevelCharacterData != null)
+            {
+                _currentLevelPlayer.SetSpriteLib(_currentLevelCharacterData.GetCharacterSpriteLib());
+            }
         }
     }
 
@@ -101,7 +110,7 @@ public class PB_LevelManager : MonoBehaviour
         {
             _currentLevelGemManager = Instantiate(_gemManagerPrefab);
 
-            if(_currentLevelGemManager)
+            if(_currentLevelGemManager != null)
             {
                 PB_EGemType[,] mapGemTypes;
                 PB_EGemColor[,] mapGemColors;
@@ -110,6 +119,11 @@ public class PB_LevelManager : MonoBehaviour
 
                 _currentLevelGemManager.InitGemManager(mapGemTypes, mapGemColors, currentSection._mapRows, currentSection._mapColumns, _currentLevelPlayer, this);
             }
+        }
+
+        if (_currentLevelGameState != null)
+        {
+            _currentLevelGameState.SetGemManager(_currentLevelGemManager);
         }
     }
 

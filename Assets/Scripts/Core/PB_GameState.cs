@@ -15,28 +15,47 @@ public class PB_GameState : MonoBehaviour
     private PB_EGameState _currentGameState = PB_EGameState.PLAYING;
 
     [SerializeField]
-    private PB_GemManager _gemManager;
+    private PB_GemManager _gemManager = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Vector3 _lowerPosition = Vector3.zero;
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        
-    }
-
-    void CheckGameState()
+    public void CheckGameWinningState()
     {
         if(_gemManager != null)
         {
             if(_gemManager.gemsArray.Count == 0)
             {
                 _currentGameState = PB_EGameState.WINNING;
+                Debug.Log("----- WINNING -----");
             }
         }
+    }
+
+    public void CheckGameLosingState()
+    {
+        if (_gemManager != null)
+        {
+            if (_gemManager.gemsArray.Count > 0)
+            {
+                foreach (PB_GemComponent gem in _gemManager.gemsArray)
+                {
+                    if(gem != null)
+                    {
+                        if(gem.transform.position.y-1.0f <= _lowerPosition.y)
+                        {
+                            _currentGameState = PB_EGameState.LOSING;
+                            Debug.Log("----- LOSING -----");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetGemManager(PB_GemManager gemManager)
+    {
+        _gemManager = gemManager;
     }
 }

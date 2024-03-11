@@ -137,9 +137,9 @@ public class PB_GemManager : MonoBehaviour
         if (_gemPrefab != null)
         {
             _newGem = Instantiate(_gemPrefab);
-            if (_newGem != null && !_gemsArray.Contains(_newGem))
+            Int32 currentGemsCount = _gemsArray.Count - 1;
+            if (_newGem != null && currentGemsCount > 0 && !_gemsArray.Contains(_newGem))
             {
-                Int32 currentGemsCount = _gemsArray.Count - 1;
                 Int32 randomIndex = UnityEngine.Random.Range(0, currentGemsCount);
                 SetNewGemData(_newGem, _gemsArray[randomIndex].GetGemType(), _gemsArray[randomIndex].GetGemColor());
 

@@ -2,9 +2,12 @@ using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class PB_CharacterComponent : MonoBehaviour
 {
+    [SerializeField]
+    private SpriteLibrary _characterSpriteLib = default;
     [SerializeField]
     private PB_InputReaderSO _inputReader = default;
     [SerializeField]
@@ -25,8 +28,6 @@ public class PB_CharacterComponent : MonoBehaviour
             _inputReader.shootEvent += OnShoot;
             _inputReader.turnEvent += OnTurn;
         }
-
-        //UpdateGemsToShoot();
     }
 
     private void OnDisable()
@@ -92,5 +93,13 @@ public class PB_CharacterComponent : MonoBehaviour
     public void SetGemManager(PB_GemManager gemManager)
     {
         _gemManager = gemManager;
+    }
+
+    public void SetSpriteLib(SpriteLibraryAsset spriteLibAsset)
+    {
+        if (_characterSpriteLib != null && spriteLibAsset != null)
+        {
+            _characterSpriteLib.spriteLibraryAsset = spriteLibAsset;
+        }
     }
 }

@@ -315,6 +315,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8824382d506698a40899470ca3975662, type: 2}
+        m_TargetAssemblyTypeName: PB_CharacterDataSO, Assembly-CSharp
+        m_MethodName: SetCharacterSpriteLib
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7108339969198208228, guid: 1a940394d3c90d24687ade8bade90943, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.U2D.Animation.SpriteLibraryAsset,
+            Unity.2D.Animation.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &87285294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3401,6 +3414,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8824382d506698a40899470ca3975662, type: 2}
+        m_TargetAssemblyTypeName: PB_CharacterDataSO, Assembly-CSharp
+        m_MethodName: SetCharacterSpriteLib
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7108339969198208228, guid: b3646d6b13b56414a90dc05c0427ed89, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.U2D.Animation.SpriteLibraryAsset,
+            Unity.2D.Animation.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1837193302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3542,6 +3568,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8824382d506698a40899470ca3975662, type: 2}
+        m_TargetAssemblyTypeName: PB_CharacterDataSO, Assembly-CSharp
+        m_MethodName: SetCharacterSpriteLib
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7108339969198208228, guid: a8a8ec96c0f403c469c1c5249e743c99, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.U2D.Animation.SpriteLibraryAsset,
+            Unity.2D.Animation.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
