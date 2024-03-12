@@ -21,7 +21,9 @@ public class PB_GameState : MonoBehaviour
     private Vector3 _lowerPosition = Vector3.zero;
 
     [SerializeField]
-    private PB_VoidEventChannelSO _onGemsDestroyedEvent = null;
+    private PB_VoidEventChannelSO _onPlayerWinEvent = null;
+    [SerializeField]
+    private PB_VoidEventChannelSO _onPlayerLoseEvent = null;
 
     public void CheckGameWinningState()
     {
@@ -30,6 +32,7 @@ public class PB_GameState : MonoBehaviour
             if(_gemManager.gemsArray.Count == 0)
             {
                 _currentGameState = PB_EGameState.WINNING;
+                _onPlayerWinEvent.RaiseEvent();
                 Debug.Log("----- WINNING -----");
             }
         }
@@ -48,6 +51,7 @@ public class PB_GameState : MonoBehaviour
                         if(gem.transform.position.y-1.0f <= _lowerPosition.y)
                         {
                             _currentGameState = PB_EGameState.LOSING;
+                            _onPlayerLoseEvent.RaiseEvent();
                             Debug.Log("----- LOSING -----");
                             break;
                         }
@@ -55,6 +59,11 @@ public class PB_GameState : MonoBehaviour
                 }
             }
         }
+    }
+
+    public PB_EGameState GetGameState()
+    {
+        return _currentGameState;
     }
 
     public void SetGemManager(PB_GemManager gemManager)

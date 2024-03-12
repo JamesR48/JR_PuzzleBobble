@@ -57,11 +57,14 @@ public class PB_LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _currentTimeToLowerCeiling += Time.fixedDeltaTime;
-        if(_currentTimeToLowerCeiling >= _timeToLowerCeiling)
+        if(_currentLevelGameState != null && _currentLevelGameState.GetGameState() == PB_EGameState.PLAYING)
         {
-            _currentTimeToLowerCeiling = 0.0f;
-            UpdateUpperLimit();
+            _currentTimeToLowerCeiling += Time.fixedDeltaTime;
+            if (_currentTimeToLowerCeiling >= _timeToLowerCeiling)
+            {
+                _currentTimeToLowerCeiling = 0.0f;
+                UpdateUpperLimit();
+            }
         }
     }
 

@@ -644,6 +644,8 @@ GameObject:
   m_Component:
   - component: {fileID: 820491581160823199}
   - component: {fileID: 820491581160823170}
+  - component: {fileID: -4402257505625723963}
+  - component: {fileID: 6151736433725724267}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -681,9 +683,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c11795b3a49ff745a31f095264fa395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterSpriteLibAsset: {fileID: 0}
   _characterSpriteLib: {fileID: 2542604064008553350}
   _inputReader: {fileID: 11400000, guid: fb53da55183a3654ab3e6b62b1b0a7f2, type: 2}
   _cannonGO: {fileID: 820491580477410423}
   _AnimController: {fileID: 820491580096661920}
   _nextGemPosition: {fileID: 820491579367132772}
+--- !u!114 &-4402257505625723963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820491581160823169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: a674ca10ecb20c3488f4bc89e0d5a6a9, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 820491581160823170}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 820491580096661920}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PB_Character_Lost
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6151736433725724267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820491581160823169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: fabc880d8c07bb840bb9e0b1c3d58642, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 820491581160823170}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
