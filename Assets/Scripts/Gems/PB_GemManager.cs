@@ -20,6 +20,8 @@ public class PB_GemManager : MonoBehaviour
     [SerializeField]
     private PB_VoidEventChannelSO _onGemsDestroyedEvent = null;
     [SerializeField]
+    private int _pointsPerGem = 50;
+    [SerializeField]
     private int _maxGemsInGame = 33;
 
     private List<PB_GemComponent> _gemsArray;
@@ -258,6 +260,7 @@ public class PB_GemManager : MonoBehaviour
                 _gemsToDestroy.Add(floating);
             }
 
+            int scoreForDestroyed = _gemsToDestroy.Count * _pointsPerGem;
             foreach (PB_GemComponent destroyG in _gemsToDestroy)
             {
                 if (destroyG != null)

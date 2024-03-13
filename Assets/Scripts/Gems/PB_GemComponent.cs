@@ -197,58 +197,6 @@ public class PB_GemComponent : MonoBehaviour
                         else
                         {
                             _gemManager.UpdateGemsToDestroy(groupOfEquals);
-                            
-                            //_gemManager.gemsToDestroy = groupOfEquals;
-                            //_gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(groupOfEquals));
-
-                            //List<PB_GemComponent> floatingGems = new List<PB_GemComponent>();
-                            //List<PB_GemComponent> connectedGems = new List<PB_GemComponent>();
-
-                            //foreach (PB_GemComponent gem in _gemManager.gemsArray)
-                            //{
-                            //    if (gem != null)
-                            //    {
-                            //        gem.bMarkedToDestroy = false;
-                            //    }
-                            //}
-
-                            //bool bInCeiling = false;
-                            //foreach (PB_GemComponent gem in _gemManager.gemsArray)
-                            //{
-                            //    bInCeiling = false;
-                            //    if (gem != null && gem.gemTilePosition.y != _gemManager.GetUpperLimit())
-                            //    {
-                            //        connectedGems = gem.GetConnectedGems();
-                            //        foreach (PB_GemComponent connected in connectedGems)
-                            //        {
-                            //            if (connected.gemTilePosition.y == _gemManager.GetUpperLimit())
-                            //            {
-                            //                bInCeiling = true;
-                            //                break;
-                            //            }
-                            //        }
-
-                            //        if (!bInCeiling)
-                            //        {
-                            //            gem.bMarkedToDestroy = true;
-                            //            floatingGems.Add(gem);
-                            //        }
-                            //    }
-                            //}
-
-                            //_gemManager.gemsArray = new List<PB_GemComponent>(_gemManager.gemsArray.Except(floatingGems));
-                            //foreach (PB_GemComponent floating in floatingGems)
-                            //{
-                            //    _gemManager.gemsToDestroy.Add(floating);
-                            //}
-
-                            //foreach (PB_GemComponent destroyG in _gemManager.gemsToDestroy)
-                            //{
-                            //    if (destroyG != null)
-                            //    {
-                            //        Destroy(destroyG.gameObject);
-                            //    }
-                            //}
                         }
                     }
                 }
