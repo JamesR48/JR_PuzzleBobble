@@ -18,9 +18,7 @@ public class PB_GemManager : MonoBehaviour
     [SerializeField]
     private List<SpriteLibraryAsset> _gemAnimations;
     [SerializeField]
-    private PB_VoidEventChannelSO _onGemsDestroyedEvent = null;
-    [SerializeField]
-    private int _pointsPerGem = 50;
+    private PB_IntEventChannelSO _onGemsDestroyedEvent = null;
     [SerializeField]
     private int _maxGemsInGame = 33;
 
@@ -260,18 +258,18 @@ public class PB_GemManager : MonoBehaviour
                 _gemsToDestroy.Add(floating);
             }
 
-            int scoreForDestroyed = _gemsToDestroy.Count * _pointsPerGem;
+            //int scoreForDestroyed = _gemsToDestroy.Count * _pointsPerGem;
+            if (_onGemsDestroyedEvent != null)
+            {
+                _onGemsDestroyedEvent.RaiseEvent(_gemsToDestroy.Count);
+            }
+
             foreach (PB_GemComponent destroyG in _gemsToDestroy)
             {
                 if (destroyG != null)
                 {
                     Destroy(destroyG.gameObject);
                 }
-            }
-
-            if(_onGemsDestroyedEvent != null)
-            {
-                _onGemsDestroyedEvent.RaiseEvent();
             }
         }
     }

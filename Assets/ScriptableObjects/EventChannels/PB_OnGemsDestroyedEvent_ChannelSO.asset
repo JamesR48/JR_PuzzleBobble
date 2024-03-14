@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031c1d193b30c3341a7e5da8dc215692, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a244c5a9018bc8498bd1f612ac0f486, type: 3}
   m_Name: PB_OnGemsDestroyedEvent_ChannelSO
   m_EditorClassIdentifier: 

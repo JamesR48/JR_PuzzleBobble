@@ -21,9 +21,26 @@ public class PB_GameState : MonoBehaviour
     private Vector3 _lowerPosition = Vector3.zero;
 
     [SerializeField]
+    private int _pointsPerGem = 50;
+
+    [SerializeField]
     private PB_VoidEventChannelSO _onPlayerWinEvent = null;
     [SerializeField]
     private PB_VoidEventChannelSO _onPlayerLoseEvent = null;
+
+    [SerializeField]
+    private int _playerScore = 0;
+
+    public void OnGemsDestroyed(int numGemsDestroyed)
+    {
+        UpdatePlayerScore(numGemsDestroyed);
+        CheckGameWinningState();
+    }
+
+    public void UpdatePlayerScore(int numGemsDestroyed)
+    {
+        _playerScore += numGemsDestroyed * _pointsPerGem;
+    }
 
     public void CheckGameWinningState()
     {

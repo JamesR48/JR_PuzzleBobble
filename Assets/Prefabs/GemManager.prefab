@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 7108339969198208228, guid: 92e4d6a49a32f424bb8688251d79a564, type: 3}
   - {fileID: 7108339969198208228, guid: a5a3b965cb6f55f4f97dd6b2f2049c14, type: 3}
   - {fileID: 7108339969198208228, guid: ea8d2964e5f6e4c4e9ca3d90c0eec5d8, type: 3}
-  _onGemsDestroyedEvent: {fileID: 11400000, guid: 39bfd63eecc8c3740a7cfd896d54b311, type: 2}
+  _onGemsDestroyedEvent: {fileID: 11400000, guid: dcceed78c7bbc5f47b0abb8f9fad2e22, type: 2}
   _maxGemsInGame: 33
 --- !u!114 &919329834365601984
 MonoBehaviour:
