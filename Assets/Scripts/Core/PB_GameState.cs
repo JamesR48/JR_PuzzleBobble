@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PB_EGameState
 {
@@ -29,7 +32,15 @@ public class PB_GameState : MonoBehaviour
     private PB_VoidEventChannelSO _onPlayerLoseEvent = null;
 
     [SerializeField]
-    private int _playerScore = 0;
+    private PB_IntVariable_SO _playerScore;
+
+    public void OnEnable()
+    {
+        if (_playerScore != null)
+        {
+            _playerScore.SetValue(0);
+        }
+    }
 
     public void OnGemsDestroyed(int numGemsDestroyed)
     {
@@ -39,7 +50,7 @@ public class PB_GameState : MonoBehaviour
 
     public void UpdatePlayerScore(int numGemsDestroyed)
     {
-        _playerScore += numGemsDestroyed * _pointsPerGem;
+        _playerScore.ApplyChange(numGemsDestroyed * _pointsPerGem);
     }
 
     public void CheckGameWinningState()
