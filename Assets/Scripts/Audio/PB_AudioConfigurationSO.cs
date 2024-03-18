@@ -27,6 +27,7 @@ public class PB_AudioConfigurationSO : ScriptableObject
     }
 
     public bool Mute = false;
+    public bool CanBeInterrupted = false;
     [Range(0f, 1f)] public float Volume = 1f;
     [Range(-3f, 3f)] public float Pitch = 1f;
 

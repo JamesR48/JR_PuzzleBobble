@@ -184,11 +184,6 @@ public class PB_GemComponent : MonoBehaviour
                 Vector2Int nearesTile = _gemManager.NearestTile(transform.position.x, transform.position.y);
                 _gemTilePosition = nearesTile;
 
-                if (_onGemCollided != null)
-                {
-                    _onGemCollided.RaiseEvent();
-                }
-
                 if (bIsStickedToWall)
                 {
                     transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
@@ -232,6 +227,11 @@ public class PB_GemComponent : MonoBehaviour
                         else
                         {
                             _gemManager.UpdateGemsToDestroy(groupOfEquals);
+                        }
+
+                        if (_onGemCollided != null)
+                        {
+                            _onGemCollided.RaiseEvent();
                         }
                     }
                 }

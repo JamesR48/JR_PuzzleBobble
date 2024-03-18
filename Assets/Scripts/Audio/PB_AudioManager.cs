@@ -33,15 +33,23 @@ public class PB_AudioManager : MonoBehaviour
 
     public void PlayAudioCue(PB_AudioCue audioCue, PB_AudioConfigurationSO settings)
     {
-        if(audioCue != null && _soundEmitters.Count > 0)
+        int emittersNum = _soundEmitters.Count;
+        if (audioCue != null && emittersNum > 0)
         {
-            foreach (PB_SoundEmitter soundEmitter in _soundEmitters)
+            for(int idx = 0; idx < emittersNum; idx++)
             {
+                PB_SoundEmitter soundEmitter = _soundEmitters[idx];
                 if (soundEmitter != null)
                 {
-                    soundEmitter.PlayAudioClip(audioCue.GetAudioClip(), settings, audioCue);
-                    if (!audioCue.GetPlayLooping())
-                        soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
+                    if(!(soundEmitter.IsInUse() && settings.CanBeInterrupted))
+                    {
+                        soundEmitter.PlayAudioClip(audioCue.GetAudioClip(), settings, audioCue.GetPlayLooping());
+                        if (!audioCue.GetPlayLooping())
+                        {
+                            soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
+                        }
+                        break;
+                    }
                 }
             }
         }

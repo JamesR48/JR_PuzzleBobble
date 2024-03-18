@@ -69,6 +69,11 @@ public class PB_SoundEmitter : MonoBehaviour
         _audioSource.Stop();
     }
 
+    public bool IsInUse()
+    {
+        return _audioSource.isPlaying;
+    }
+
     public bool IsLooping()
     {
         return _audioSource.loop;
