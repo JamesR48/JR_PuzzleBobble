@@ -35,10 +35,22 @@ public class PB_GemComponent : MonoBehaviour
     private PB_EGemColor _gemColor = PB_EGemColor.NONE;
 
     [SerializeField]
-    private SpriteRenderer _rendererComponent;
+    private SpriteRenderer _rendererComponent = null;
 
     [SerializeField]
-    private SpriteLibrary _spriteLibraryComp;
+    private SpriteLibrary _spriteLibraryComp = null;
+
+    [SerializeField]
+    private Animator _gemAnimator = null;
+
+    [SerializeField]
+    private AnimationClip _gemDestroyedAnim = null;
+
+    [SerializeField]
+    private PB_VoidEventChannelSO _onGemShot = null;
+
+    [SerializeField]
+    private PB_VoidEventChannelSO _onGemCollided = null;
 
     private PB_GemManager _gemManager;
     public PB_GemManager gemManager { set { _gemManager = value; } }
@@ -57,10 +69,25 @@ public class PB_GemComponent : MonoBehaviour
     private PB_MoveComponent _moveComponent;
     private CircleCollider2D _colliderComponent;
 
+    private float _currentDestroyGemTimer = 0.0f;
+
     private void OnEnable()
     {
         _moveComponent = GetComponent<PB_MoveComponent>();
         _colliderComponent = GetComponent<CircleCollider2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if(_currentDestroyGemTimer > 0.0f)
+        {
+            _currentDestroyGemTimer -= Time.fixedDeltaTime;
+            if(_currentDestroyGemTimer <= 0.0f)
+            {
+                _currentDestroyGemTimer = 0.0f;
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void SetGemType(PB_EGemType type)
@@ -108,6 +135,11 @@ public class PB_GemComponent : MonoBehaviour
             _moveComponent.enabled = true;
             _moveComponent.OnStartMoving(transform.up);
             _gemNeighbours = new List<PB_GemComponent>();
+
+            if(_onGemShot != null)
+            {
+                _onGemShot.RaiseEvent();
+            }
         }
     }
 
@@ -152,13 +184,16 @@ public class PB_GemComponent : MonoBehaviour
                 Vector2Int nearesTile = _gemManager.NearestTile(transform.position.x, transform.position.y);
                 _gemTilePosition = nearesTile;
 
-                _gemManager.UpdateShootableGems();
+                if (_onGemCollided != null)
+                {
+                    _onGemCollided.RaiseEvent();
+                }
 
-                if(bIsStickedToWall)
+                if (bIsStickedToWall)
                 {
                     transform.position = _gemManager.TileToWorld(nearesTile.x, nearesTile.y);
                     _gemManager.gemsArray.Add(this);
-                    return;
+                    //return;
                 }
 
                 /*
@@ -168,12 +203,12 @@ public class PB_GemComponent : MonoBehaviour
                 */
 
                 PB_GemComponent collidedGem = null;
-                if (collision.gameObject.TryGetComponent<PB_GemComponent>(out collidedGem))
+                if (bIsStickedToWall || collision.gameObject.TryGetComponent<PB_GemComponent>(out collidedGem))
                 {
-                    if (collidedGem != null)
+                    if (bIsStickedToWall || collidedGem != null)
                     {
                         List<PB_GemComponent> groupOfEquals = GetEqualNeighbours(collidedGem);
-                        if (groupOfEquals.Count < 3)
+                        if (!bIsStickedToWall && groupOfEquals.Count < 3)
                         {
                             /*
                             Debug.Log("----- GEM -----");
@@ -333,6 +368,18 @@ public class PB_GemComponent : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void OnStartGemDestruction()
+    {
+        DisableCollision();
+
+        if (_rendererComponent != null && _gemAnimator != null && _gemDestroyedAnim != null)
+        {
+            _rendererComponent.gameObject.SetActive(false);
+            _gemAnimator.Play(_gemDestroyedAnim.name);
+            _currentDestroyGemTimer = _gemDestroyedAnim.length;
         }
     }
 }

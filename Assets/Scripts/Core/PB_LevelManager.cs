@@ -43,6 +43,7 @@ public class PB_LevelManager : MonoBehaviour
 
     private float _currentTimeToLowerCeiling = 0.0f;
     private int _ceilingLevel = 0;
+    private bool _canLowerCeiling = true;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +58,7 @@ public class PB_LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(_currentLevelGameState != null && _currentLevelGameState.GetGameState() == PB_EGameState.PLAYING)
+        if(_currentLevelGameState != null && _currentLevelGameState.GetGameState() == PB_EGameState.PLAYING && _canLowerCeiling)
         {
             _currentTimeToLowerCeiling += Time.fixedDeltaTime;
             if (_currentTimeToLowerCeiling >= _timeToLowerCeiling)
@@ -182,5 +183,10 @@ public class PB_LevelManager : MonoBehaviour
     public int GetCeilingLevel()
     { 
         return -_ceilingLevel;
+    }
+
+    public void SetCanLowerCeiling(bool InCanLower)
+    {
+        _canLowerCeiling = InCanLower;
     }
 }

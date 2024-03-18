@@ -5,15 +5,9 @@ using UnityEngine;
 public class PB_CannonComponent : MonoBehaviour
 {
     [SerializeField]
-    private PB_GemComponent _gemGO = null;
-    [SerializeField]
     private Transform _shootPosition;
     [SerializeField]
     private PB_RotationComponent _RotationComp = null;
-    [SerializeField]
-    private float _fireRate = 0.1f;
-
-    private float currentFireRateTimer = 0.0f;
 
     private PB_GemComponent _gemToShoot = null;
 

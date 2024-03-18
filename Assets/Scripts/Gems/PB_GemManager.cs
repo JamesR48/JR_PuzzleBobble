@@ -258,7 +258,6 @@ public class PB_GemManager : MonoBehaviour
                 _gemsToDestroy.Add(floating);
             }
 
-            //int scoreForDestroyed = _gemsToDestroy.Count * _pointsPerGem;
             if (_onGemsDestroyedEvent != null)
             {
                 _onGemsDestroyedEvent.RaiseEvent(_gemsToDestroy.Count);
@@ -268,7 +267,7 @@ public class PB_GemManager : MonoBehaviour
             {
                 if (destroyG != null)
                 {
-                    Destroy(destroyG.gameObject);
+                    destroyG.OnStartGemDestruction();
                 }
             }
         }

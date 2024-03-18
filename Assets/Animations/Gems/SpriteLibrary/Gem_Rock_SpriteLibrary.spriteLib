@@ -54,4 +54,80 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -491447132, guid: ec96f62f74218c84980298d5670e977b, type: 3}
     m_FromMain: 1
     m_EntryOverrideCount: 7
+  - m_Name: Destroyed
+    m_Hash: 1500336285
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: collectsparks_6colors_256_GrafX2_0
+      m_Hash: -299668771
+      m_Sprite: {fileID: -1033168017, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1033168017, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_12
+      m_Hash: -79560113
+      m_Sprite: {fileID: 1437327515, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1437327515, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_24
+      m_Hash: 957150393
+      m_Sprite: {fileID: -233026574, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -233026574, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_36
+      m_Hash: -837180204
+      m_Sprite: {fileID: -896313673, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -896313673, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_48
+      m_Hash: 1725964052
+      m_Sprite: {fileID: 46909293, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 46909293, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_60
+      m_Hash: 1510864292
+      m_Sprite: {fileID: -1756182164, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1756182164, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_72
+      m_Hash: -1390893623
+      m_Sprite: {fileID: -356689737, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -356689737, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_84
+      m_Hash: -1008526285
+      m_Sprite: {fileID: 262573502, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 262573502, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_96
+      m_Hash: 888556638
+      m_Sprite: {fileID: -6666157, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -6666157, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_108
+      m_Hash: 783166354
+      m_Sprite: {fileID: -1950501790, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1950501790, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_120
+      m_Hash: 306430242
+      m_Sprite: {fileID: -1048814199, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1048814199, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_132
+      m_Hash: -447311537
+      m_Sprite: {fileID: -225908882, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -225908882, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_144
+      m_Hash: 1131717309
+      m_Sprite: {fileID: 1682532146, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1682532146, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    - m_Name: collectsparks_6colors_256_GrafX2_156
+      m_Hash: -1268649264
+      m_Sprite: {fileID: 986215688, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 986215688, guid: 918a7d2f4949d144fabb46419985c039, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 0
   m_PrimaryLibraryGUID: 98e05489f3671cf4993f2f6a35f248fd

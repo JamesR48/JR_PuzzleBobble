@@ -285,6 +285,10 @@ MonoBehaviour:
   _gemColor: 4
   _rendererComponent: {fileID: 1821320306158038471}
   _spriteLibraryComp: {fileID: 2355491693745068948}
+  _gemAnimator: {fileID: 924584472974631394}
+  _gemDestroyedAnim: {fileID: 7400000, guid: 21a0755d2c9f23e41878a7656d84afd3, type: 2}
+  _onGemShot: {fileID: 11400000, guid: 102ef8e3ff57aab45a99d4ec9fa95c17, type: 2}
+  _onGemCollided: {fileID: 11400000, guid: ae1fb09b488a9e44e9e73a17a4b88064, type: 2}
   _gemTilePosition: {x: 0, y: 0}
   _gemNeighbours: []
 --- !u!58 &37720405223360046

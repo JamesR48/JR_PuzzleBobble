@@ -1082,7 +1082,7 @@ RectTransform:
   - {fileID: 1032644521}
   - {fileID: 427666882}
   m_Father: {fileID: 917324901}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1797,8 +1797,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 709361330}
   - {fileID: 1791688085}
+  - {fileID: 709361330}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2527,7 +2527,7 @@ RectTransform:
   - {fileID: 11628272}
   - {fileID: 1738951677}
   m_Father: {fileID: 917324901}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2544,6 +2544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1848286403}
   - component: {fileID: 1848286404}
+  - component: {fileID: 1848286405}
+  - component: {fileID: 1848286406}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2588,6 +2590,62 @@ MonoBehaviour:
   _ceilingBound: {fileID: 798266658}
   _onLowerCeilingEvent: {fileID: 11400000, guid: 95d031f582adf3042bd773d4c241e8b0, type: 2}
   _timeToLowerCeiling: 15
+--- !u!114 &1848286405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848286402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 102ef8e3ff57aab45a99d4ec9fa95c17, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1848286404}
+        m_TargetAssemblyTypeName: PB_LevelManager, Assembly-CSharp
+        m_MethodName: SetCanLowerCeiling
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1848286406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848286402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: ae1fb09b488a9e44e9e73a17a4b88064, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1848286404}
+        m_TargetAssemblyTypeName: PB_LevelManager, Assembly-CSharp
+        m_MethodName: SetCanLowerCeiling
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1849049907
 GameObject:
   m_ObjectHideFlags: 0
