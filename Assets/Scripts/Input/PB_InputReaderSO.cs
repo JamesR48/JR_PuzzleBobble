@@ -10,6 +10,7 @@ public class PB_InputReaderSO : ScriptableObject, PB_Input.IGameplayActions
 {
     public event UnityAction shootEvent = delegate { };
     public event UnityAction<float> turnEvent = delegate { };
+    public event UnityAction pauseEvent = delegate { };
 
     private PB_Input PBInputs = null;
 
@@ -43,4 +44,9 @@ public class PB_InputReaderSO : ScriptableObject, PB_Input.IGameplayActions
         turnEvent.Invoke(context.ReadValue<float>());
     }
 
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            pauseEvent.Invoke();
+    }
 }

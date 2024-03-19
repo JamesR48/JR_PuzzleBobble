@@ -1,5 +1,5 @@
 {
-    "name": "PuzzleBobble_Controls",
+    "name": "PB_Input",
     "maps": [
         {
             "name": "Gameplay",
@@ -18,6 +18,15 @@
                     "name": "Turn",
                     "type": "Button",
                     "id": "5dee66cf-fcf9-44e2-9ef0-939aaf8854de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "5dcb476f-d61e-4582-b6ba-91735294f769",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -68,6 +77,28 @@
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8c85f57b-74b7-4058-8fc3-27c7db10ae1d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "264a1aeb-9ccd-4331-9040-c430b6b1820c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

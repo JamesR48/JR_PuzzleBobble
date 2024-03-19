@@ -41,7 +41,7 @@ public class PB_AudioManager : MonoBehaviour
                 PB_SoundEmitter soundEmitter = _soundEmitters[idx];
                 if (soundEmitter != null)
                 {
-                    if(!(soundEmitter.IsInUse() && settings.CanBeInterrupted))
+                    if(!soundEmitter.IsInUse() || soundEmitter.CanBeInterrupted())
                     {
                         soundEmitter.PlayAudioClip(audioCue.GetAudioClip(), settings, audioCue.GetPlayLooping());
                         if (!audioCue.GetPlayLooping())

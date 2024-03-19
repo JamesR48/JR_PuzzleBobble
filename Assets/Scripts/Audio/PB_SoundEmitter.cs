@@ -9,6 +9,9 @@ public class PB_SoundEmitter : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource = null;
 
+    [SerializeField]
+    private bool _canBeInterrupted = false;
+
     public event UnityAction<PB_SoundEmitter> OnSoundFinishedPlaying;
 
     private float _currentAudioTimer = 0.0f;
@@ -42,6 +45,7 @@ public class PB_SoundEmitter : MonoBehaviour
     {
         if(_audioSource != null && clip != null)
         {
+            _currentAudioTimer = 0.0f;
             _audioSource.clip = clip;
             settings.ApplyTo(_audioSource);
             _audioSource.loop = hasToLoop;
@@ -66,6 +70,7 @@ public class PB_SoundEmitter : MonoBehaviour
 
     public void Stop()
     {
+        _currentAudioTimer = 0.0f;
         _audioSource.Stop();
     }
 
@@ -81,6 +86,14 @@ public class PB_SoundEmitter : MonoBehaviour
 
     private void FinishedPlaying()
     {
-        OnSoundFinishedPlaying.Invoke(this);
+        if(OnSoundFinishedPlaying.GetInvocationList().Length > 0)
+        {
+            OnSoundFinishedPlaying.Invoke(this);
+        }
+    }
+
+    public bool CanBeInterrupted()
+    {
+        return _canBeInterrupted;
     }
 }

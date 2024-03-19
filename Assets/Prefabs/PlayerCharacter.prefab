@@ -429,10 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396e599dcc53da049bc79c39f572c212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gemGO: {fileID: 0}
   _shootPosition: {fileID: 820491580204372398}
   _RotationComp: {fileID: 820491580477410427}
-  _fireRate: 0.1
 --- !u!1 &820491580726862818
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +686,7 @@ MonoBehaviour:
   _cannonGO: {fileID: 820491580477410423}
   _AnimController: {fileID: 820491580096661920}
   _nextGemPosition: {fileID: 820491579367132772}
+  _onPausePressed: {fileID: 11400000, guid: d66f776407f90304e9a0b8de512d282a, type: 2}
 --- !u!114 &-4402257505625723963
 MonoBehaviour:
   m_ObjectHideFlags: 0

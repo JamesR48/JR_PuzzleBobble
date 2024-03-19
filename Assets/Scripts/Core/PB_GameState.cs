@@ -9,7 +9,8 @@ public enum PB_EGameState
 {
     PLAYING,
     LOSING,
-    WINNING
+    WINNING,
+    PAUSED
 }
 
 public class PB_GameState : MonoBehaviour
@@ -97,5 +98,19 @@ public class PB_GameState : MonoBehaviour
     public void SetGemManager(PB_GemManager gemManager)
     {
         _gemManager = gemManager;
+    }
+
+    public void OnPauseGame()
+    {
+        if(GetGameState() == PB_EGameState.PLAYING)
+        {
+            _currentGameState = PB_EGameState.PAUSED;
+            Time.timeScale = 0.0f;
+        }
+        else if (GetGameState() == PB_EGameState.PAUSED)
+        {
+            _currentGameState = PB_EGameState.PLAYING;
+            Time.timeScale = 1.0f;
+        }
     }
 }
