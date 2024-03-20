@@ -140,22 +140,17 @@ public class PB_LevelManager : MonoBehaviour
     {
         Vector3Int tilePos = new Vector3Int(InX, InY, 0);
         Vector3 worldPos = _currentLevelTilemap.GetCellCenterWorld(tilePos);
-        //Debug.Log("Tile to World: " + worldPos);
         float oddOffset = _currentLevelTilemap.cellSize.x * 0.5f;
         worldPos.x += (((InY - _ceilingLevel) % 2) * oddOffset);
-        //Debug.Log("Tile to World POST offset: " + worldPos);
         return worldPos;
     }
 
     public Vector2Int NearestTile(float InX, float InY)
     {
         Vector3 worldPos = new Vector3(InX, InY, 0.0f);
-        //Debug.Log("initial: "+ worldPos +" Nearest Tile: " + _backgroundTilemap.WorldToCell(worldPos));
-        //worldPos.x -= ((InY % 2) * 0.5f);
         Vector3Int cellPos = _currentLevelTilemap.WorldToCell(worldPos);
         worldPos.x -= (((cellPos.y - _ceilingLevel) % 2) * 0.5f);
         cellPos = _currentLevelTilemap.WorldToCell(worldPos);
-        //Debug.Log("Nearest Tile POST offset: " + cellPos);
         Vector2Int tilePos = new Vector2Int(cellPos.x, cellPos.y);
         return tilePos;
     }

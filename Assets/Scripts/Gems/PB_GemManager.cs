@@ -145,9 +145,6 @@ public class PB_GemManager : MonoBehaviour
             {
                 Int32 randomIndex = UnityEngine.Random.Range(0, currentGemsCount);
                 SetNewGemData(_newGem, _gemsArray[randomIndex].GetGemType(), _gemsArray[randomIndex].GetGemColor());
-
-                //Debug.Log("TYPE: " + _newGem.GetGemType().ToString() + " COLOR: " + _newGem.GetGemColor().ToString());
-
                 _currentGemsInGame++;
             }
         }
@@ -190,8 +187,6 @@ public class PB_GemManager : MonoBehaviour
             {
                 if(gem != null)
                 {
-                    //gem.gemTilePosition = new Vector2Int(gem.gemTilePosition.x, gem.gemTilePosition.y-1);
-                    //gem.transform.position = TileToWorld(gem.gemTilePosition.x, gem.gemTilePosition.y-1);
                     Vector3 newWorldPos = gem.transform.position;
                     newWorldPos.y -= 1;
                     gem.gemTilePosition = _levelManager.NearestTile(newWorldPos.x, newWorldPos.y);
