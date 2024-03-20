@@ -101,7 +101,7 @@ public class PB_LevelManager : MonoBehaviour
         {
             _currentLevelPlayer = Instantiate(_playerCharacterPrefab);
             
-            if(_currentLevelCharacterData != null)
+            if(_currentLevelPlayer != null && _currentLevelCharacterData != null) 
             {
                 _currentLevelPlayer.SetSpriteLib(_currentLevelCharacterData.GetCharacterSpriteLib());
             }

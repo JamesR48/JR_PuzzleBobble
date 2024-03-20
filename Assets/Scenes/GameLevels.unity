@@ -156,6 +156,8 @@ Transform:
   - {fileID: 1240669601}
   - {fileID: 209089449}
   - {fileID: 855442242}
+  - {fileID: 826113734}
+  - {fileID: 720717323}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -841,6 +843,8 @@ GameObject:
   - component: {fileID: 261033935}
   - component: {fileID: 261033937}
   - component: {fileID: 261033936}
+  - component: {fileID: 261033939}
+  - component: {fileID: 261033938}
   m_Layer: 0
   m_Name: BGAudio
   m_TagString: Untagged
@@ -976,6 +980,62 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &261033938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261033933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 48ab0f7d973dbec48af2ec178fb00cbc, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 261033936}
+        m_TargetAssemblyTypeName: PB_SoundEmitter, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &261033939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261033933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 7e3f88f6f3a417746b34fb6d35e6b7ef, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 261033936}
+        m_TargetAssemblyTypeName: PB_SoundEmitter, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &427666881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1402,6 @@ GameObject:
   - component: {fileID: 612520538}
   - component: {fileID: 612520539}
   - component: {fileID: 612520540}
-  - component: {fileID: 612520541}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -1383,7 +1442,10 @@ MonoBehaviour:
   _pointsPerGem: 50
   _onPlayerWinEvent: {fileID: 11400000, guid: fabc880d8c07bb840bb9e0b1c3d58642, type: 2}
   _onPlayerLoseEvent: {fileID: 11400000, guid: a674ca10ecb20c3488f4bc89e0d5a6a9, type: 2}
+  _onPauseEvent: {fileID: 11400000, guid: 7e3f88f6f3a417746b34fb6d35e6b7ef, type: 2}
+  _onResumeEvent: {fileID: 11400000, guid: 48ab0f7d973dbec48af2ec178fb00cbc, type: 2}
   _playerScore: {fileID: 11400000, guid: 302568f78ec649f44bf4f6f0a64da8cb, type: 2}
+  _inputReader: {fileID: 11400000, guid: fb53da55183a3654ab3e6b62b1b0a7f2, type: 2}
 --- !u!114 &612520539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,34 +1494,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PB_GameState, Assembly-CSharp
         m_MethodName: OnGemsDestroyed
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &612520541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612520536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: d66f776407f90304e9a0b8de512d282a, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 612520538}
-        m_TargetAssemblyTypeName: PB_GameState, Assembly-CSharp
-        m_MethodName: OnPauseGame
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1914,6 +1948,84 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &720717322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 720717323}
+  - component: {fileID: 720717325}
+  - component: {fileID: 720717324}
+  m_Layer: 0
+  m_Name: SFXPauseEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &720717323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720717322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1331587}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &720717324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720717322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 48ab0f7d973dbec48af2ec178fb00cbc, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720717325}
+        m_TargetAssemblyTypeName: PB_AudioCue, Assembly-CSharp
+        m_MethodName: PlayAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &720717325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720717322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb701c4d9c6866e4a8937998be798f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: c283da536e38cc84b83d9ece652f2b84, type: 3}
+  _playOnStart: 0
+  _playLooping: 0
+  _audioCueEventChannel: {fileID: 11400000, guid: 0fcb8f34a9cd0914ab77c968d524af72, type: 2}
+  _audioConfiguration: {fileID: 11400000, guid: 990de58a5a3fafd4188a4094666881fc, type: 2}
 --- !u!1 &743582046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,6 +2234,84 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &826113733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 826113734}
+  - component: {fileID: 826113736}
+  - component: {fileID: 826113735}
+  m_Layer: 0
+  m_Name: SFXPauseStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &826113734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826113733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1331587}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &826113735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826113733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 7e3f88f6f3a417746b34fb6d35e6b7ef, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 826113736}
+        m_TargetAssemblyTypeName: PB_AudioCue, Assembly-CSharp
+        m_MethodName: PlayAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &826113736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826113733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb701c4d9c6866e4a8937998be798f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: 8b10724071fa5694d8ed7063f04b5876, type: 3}
+  _playOnStart: 0
+  _playLooping: 0
+  _audioCueEventChannel: {fileID: 11400000, guid: 0fcb8f34a9cd0914ab77c968d524af72, type: 2}
+  _audioConfiguration: {fileID: 11400000, guid: 990de58a5a3fafd4188a4094666881fc, type: 2}
 --- !u!1 &834698606
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class PB_SoundEmitter : MonoBehaviour
     public event UnityAction<PB_SoundEmitter> OnSoundFinishedPlaying;
 
     private float _currentAudioTimer = 0.0f;
+    private bool _isPaused = false;
 
     private void Awake()
     {
@@ -61,11 +62,13 @@ public class PB_SoundEmitter : MonoBehaviour
     public void Resume()
     {
         _audioSource.Play();
+        _isPaused = false;
     }
 
     public void Pause()
     {
         _audioSource.Pause();
+        _isPaused = true;
     }
 
     public void Stop()
@@ -76,7 +79,7 @@ public class PB_SoundEmitter : MonoBehaviour
 
     public bool IsInUse()
     {
-        return _audioSource.isPlaying;
+        return _audioSource.isPlaying || _isPaused;
     }
 
     public bool IsLooping()

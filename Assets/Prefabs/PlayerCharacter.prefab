@@ -644,6 +644,8 @@ GameObject:
   - component: {fileID: 820491581160823170}
   - component: {fileID: -4402257505625723963}
   - component: {fileID: 6151736433725724267}
+  - component: {fileID: 8674913532034077475}
+  - component: {fileID: 1469731159794644225}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -686,7 +688,6 @@ MonoBehaviour:
   _cannonGO: {fileID: 820491580477410423}
   _AnimController: {fileID: 820491580096661920}
   _nextGemPosition: {fileID: 820491579367132772}
-  _onPausePressed: {fileID: 11400000, guid: d66f776407f90304e9a0b8de512d282a, type: 2}
 --- !u!114 &-4402257505625723963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,4 +755,60 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8674913532034077475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820491581160823169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 7e3f88f6f3a417746b34fb6d35e6b7ef, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 820491581160823170}
+        m_TargetAssemblyTypeName: PB_CharacterComponent, Assembly-CSharp
+        m_MethodName: EnablePlayerInput
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1469731159794644225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820491581160823169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2490ffc8157aaf4b8d673659cb45f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 48ab0f7d973dbec48af2ec178fb00cbc, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 820491581160823170}
+        m_TargetAssemblyTypeName: PB_CharacterComponent, Assembly-CSharp
+        m_MethodName: EnablePlayerInput
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2

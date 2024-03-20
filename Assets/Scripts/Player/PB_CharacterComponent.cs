@@ -16,8 +16,6 @@ public class PB_CharacterComponent : MonoBehaviour
     private Animator _AnimController = default;
     [SerializeField]
     private Transform _nextGemPosition;
-    [SerializeField]
-    private PB_VoidEventChannelSO _onPausePressed = null;
 
     private PB_GemManager _gemManager;
     private PB_GemComponent _nextGem = null;
@@ -29,7 +27,6 @@ public class PB_CharacterComponent : MonoBehaviour
         {
             _inputReader.shootEvent += OnShoot;
             _inputReader.turnEvent += OnTurn;
-            _inputReader.pauseEvent += OnPausePressed;
         }
     }
 
@@ -60,14 +57,6 @@ public class PB_CharacterComponent : MonoBehaviour
         if(_AnimController)
         {
             _AnimController.SetFloat("TurnDirection", direction);
-        }
-    }
-
-    private void OnPausePressed()
-    {
-        if (_onPausePressed != null)
-        {
-            _onPausePressed.RaiseEvent();
         }
     }
 
@@ -111,6 +100,18 @@ public class PB_CharacterComponent : MonoBehaviour
         if (_characterSpriteLib != null && spriteLibAsset != null)
         {
             _characterSpriteLib.spriteLibraryAsset = spriteLibAsset;
+        }
+    }
+
+    public void EnablePlayerInput(bool InEnable)
+    {
+        if(InEnable)
+        {
+            OnEnable();
+        }
+        else 
+        {
+            OnDisable();
         }
     }
 }

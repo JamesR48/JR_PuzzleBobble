@@ -31,15 +31,27 @@ public class PB_GameState : MonoBehaviour
     private PB_VoidEventChannelSO _onPlayerWinEvent = null;
     [SerializeField]
     private PB_VoidEventChannelSO _onPlayerLoseEvent = null;
+    [SerializeField]
+    private PB_VoidEventChannelSO _onPauseEvent = null;
+    [SerializeField]
+    private PB_VoidEventChannelSO _onResumeEvent = null;
 
     [SerializeField]
     private PB_IntVariable_SO _playerScore;
+
+    [SerializeField]
+    private PB_InputReaderSO _inputReader = null;
 
     public void OnEnable()
     {
         if (_playerScore != null)
         {
             _playerScore.SetValue(0);
+        }
+
+        if (_inputReader)
+        {
+            _inputReader.pauseEvent += OnPauseGame;
         }
     }
 
@@ -106,11 +118,21 @@ public class PB_GameState : MonoBehaviour
         {
             _currentGameState = PB_EGameState.PAUSED;
             Time.timeScale = 0.0f;
+
+            if (_onPauseEvent != null)
+            {
+                _onPauseEvent.RaiseEvent();
+            }
         }
         else if (GetGameState() == PB_EGameState.PAUSED)
         {
             _currentGameState = PB_EGameState.PLAYING;
             Time.timeScale = 1.0f;
+
+            if (_onResumeEvent != null)
+            {
+                _onResumeEvent.RaiseEvent();
+            }
         }
     }
 }
