@@ -53,6 +53,9 @@ public class PB_GameState : MonoBehaviour
         {
             _inputReader.pauseEvent += OnPauseGame;
         }
+
+        _currentGameState = PB_EGameState.PLAYING;
+        Time.timeScale = 1.0f;
     }
 
     public void OnGemsDestroyed(int numGemsDestroyed)

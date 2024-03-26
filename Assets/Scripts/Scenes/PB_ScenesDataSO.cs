@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,7 +24,7 @@ public class PB_ScenesDataSO : ScriptableObject
         if (index <= _levelScenes.Count)
         {
             //Load Gameplay scene for the level
-            AsyncOperation scene = SceneManager.LoadSceneAsync(_levelScenes[index - 1].GetSceneObject().name);
+            AsyncOperation scene = SceneManager.LoadSceneAsync(_levelScenes[index - 1].GetSceneName());
             scene.allowSceneActivation = false;
 
             await Task.Delay(1000);

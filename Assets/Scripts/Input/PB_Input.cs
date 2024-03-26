@@ -102,17 +102,6 @@ public partial class @PB_Input : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8c85f57b-74b7-4058-8fc3-27c7db10ae1d"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""264a1aeb-9ccd-4331-9040-c430b6b1820c"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
