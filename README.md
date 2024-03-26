@@ -1,7 +1,7 @@
 # JR_PuzzleBobble
 
 Little demo of a Puzzle Bobble clone.
-# CONTROLS:
+# Controls:
   - A/D: Turn left/right.
   - SPACE: Shoot.
   - ESC: Pause.
